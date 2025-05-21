@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "713589588056",
+    "project_id": "app-gerenciamento-aulas",
+    "storage_bucket": "app-gerenciamento-aulas.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:713589588056:android:0b0635ada37b2cc257ca2d",
+        "android_client_info": {
+          "package_name": "br.edu.fatecpg.app_gerenciamento_aulas"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAw6D9wMSTW_mpbbtSyX0ou_IokOcW4IIo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
