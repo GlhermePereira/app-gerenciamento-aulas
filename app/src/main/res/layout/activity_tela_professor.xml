@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#282A36"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Painel do Professor"
+        android:textColor="#F8F8F2"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="32dp" />
+
+    <Button
+        android:id="@+id/btnDefinirHorario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Definir Horários Disponíveis"
+        android:background="@drawable/button_background"
+        android:textColor="#FFFFFF"/>
+</LinearLayout>

@@ -41,6 +41,8 @@ android {
 }
 
 dependencies {
+// Gerencia versões automaticamente
+    implementation(platform("com.google.firebase:firebase-bom:32.3.1"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -50,12 +52,14 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
-    implementation(libs.firebase.auth)
     implementation(libs.androidx.appcompat)
-    implementation ("androidx.core:core-ktx:1.10.1")
     implementation(libs.material)
-    implementation ("com.firebaseui:firebase-ui-auth:8.0.2")
-    implementation ("com.google.firebase:firebase-auth")
+    // Adicione o BOM do Firebase
+// Sem versões aqui, o BOM cuida disso
+    implementation("com.google.firebase:firebase-auth")
+    implementation("com.google.firebase:firebase-firestore")
+    implementation("com.google.firebase:firebase-database-ktx")
+
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
     testImplementation(libs.junit)

@@ -9,11 +9,10 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
-
 class Login : AppCompatActivity() {
 
-    private lateinit var editTextEmail: TextInputEditText
-    private lateinit var editTextPassword: TextInputEditText
+    private lateinit var editTextEmail: EditText
+    private lateinit var editTextPassword: EditText
     private lateinit var buttonLogin: Button
     private lateinit var auth: FirebaseAuth
 
@@ -23,9 +22,9 @@ class Login : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
 
-        val editTextEmail: EditText = findViewById(R.id.email)
-        val editTextPassword: EditText = findViewById(R.id.password)
-        val buttonLogin : Button = findViewById(R.id.login_button)
+        editTextEmail = findViewById(R.id.email)
+        editTextPassword = findViewById(R.id.password)
+        buttonLogin = findViewById(R.id.login_button)
 
         buttonLogin.setOnClickListener {
             val email = editTextEmail.text.toString().trim()
@@ -40,28 +39,23 @@ class Login : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            // Login com email e senha
             auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
-                        // Login ok, vai pra MainActivity ou outra tela
                         Toast.makeText(this, "Login realizado!", Toast.LENGTH_SHORT).show()
                         val intent = Intent(this, MainActivity::class.java)
                         startActivity(intent)
                         finish()
                     } else {
-                        // Falha no login
                         Toast.makeText(this, "Falha no login: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
                     }
                 }
         }
 
         val textRegister = findViewById<TextView>(R.id.textRegister)
-
         textRegister.setOnClickListener {
             val intent = Intent(this, Register::class.java)
             startActivity(intent)
         }
-
     }
 }

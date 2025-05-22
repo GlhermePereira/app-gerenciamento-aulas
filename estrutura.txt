@@ -1,0 +1,86 @@
+📱 TELAS E ELEMENTOS
+1. Tela de Registro (Register)
+
+Elementos:
+
+    TextInputEditText: Nome
+
+    EditText: E-mail
+
+    EditText: Senha
+
+    RadioButton: Aluno / Professor
+
+    Botão: Cadastrar
+
+Ações:
+
+    Cria conta com Firebase Auth.
+
+    Salva nome, e-mail e tipo no Firestore.
+
+    Redireciona para a tela de Login.
+
+2. Tela de Login (Login)
+
+Elementos:
+
+    EditText: E-mail
+
+    EditText: Senha
+
+    Botão: Entrar
+
+    Link/Botão: Criar conta
+
+Ações:
+
+    Faz login com Firebase Auth.
+
+    Consulta Firestore para obter o tipo de usuário.
+
+    Redireciona para Home correspondente (Aluno ou Professor).
+
+3. Home do Aluno
+
+Elementos:
+
+    Lista de horários disponíveis (recupera de horarios onde disponivel = true)
+
+    Botão: Agendar aula
+
+    Aba: Minhas aulas agendadas
+
+    Aba: Materiais de estudo (filtrar por aulas do aluno)
+
+Ações:
+
+    Seleciona um horário e agenda aula → salva em agendamentos.
+
+    Exibe aulas agendadas e materiais se dataAula == hoje.
+
+4. Home do Professor
+
+Elementos:
+
+    Botão: Adicionar horário disponível
+
+    Lista: Meus horários disponíveis
+
+    Lista: Aulas agendadas com meus alunos
+
+    Aba: Enviar material para uma aula
+
+Ações:
+
+    Define horário disponível → salva em horarios.
+
+    Visualiza agendamentos onde professorId = meuId.
+
+    Envia materiais (link para PDF/Drive) vinculados a um agendamentoId.
+
+🔔 Notificações (em segundo plano)
+
+    Scheduled Job/WorkManager para verificar se há aulas 1 hora antes do horário atual.
+
+    Se sim, envia push para aluno e professor.
