@@ -14,10 +14,10 @@
         tools:targetApi="31">
         <activity
             android:name=".ProfessorActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".AlunoActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".TelaAluno"
             android:exported="false" />

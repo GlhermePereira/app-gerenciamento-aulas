@@ -2,13 +2,18 @@ package br.edu.fatecpg.app_gerenciamento_aulas
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat.startActivity
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.firestore.FirebaseFirestore
+
 class Login : AppCompatActivity() {
 
     private lateinit var editTextEmail: EditText
@@ -40,22 +45,50 @@ class Login : AppCompatActivity() {
             }
 
             auth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this) { task ->
+                .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
-                        Toast.makeText(this, "Login realizado!", Toast.LENGTH_SHORT).show()
-                        val intent = Intent(this, MainActivity::class.java)
-                        startActivity(intent)
-                        finish()
+                        val uid = auth.currentUser?.uid
+                        if (uid != null) {
+                            // Busca o tipo do usuário no Firestore:
+                            FirebaseFirestore.getInstance().collection("usuarios")
+                                .document(uid)
+                                .get()
+                                .addOnSuccessListener { doc ->
+                                    val tipo = doc.getString("tipo")
+                                    when (tipo) {
+                                        "aluno" -> startActivity(
+                                            Intent(
+                                                this,
+                                                AlunoActivity::class.java
+                                            )
+                                        )
+
+                                        "professor" -> startActivity(
+                                            Intent(
+                                                this,
+                                                ProfessorActivity::class.java
+                                            )
+                                        )
+
+                                        else -> Toast.makeText(
+                                            this,
+                                            "Tipo inválido",
+                                            Toast.LENGTH_SHORT
+                                        ).show()
+                                    }
+                                }
+                        }
                     } else {
-                        Toast.makeText(this, "Falha no login: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Falha no login", Toast.LENGTH_SHORT).show()
                     }
                 }
-        }
 
-        val textRegister = findViewById<TextView>(R.id.textRegister)
-        textRegister.setOnClickListener {
-            val intent = Intent(this, Register::class.java)
-            startActivity(intent)
+
+            val textRegister = findViewById<TextView>(R.id.textRegister)
+            textRegister.setOnClickListener {
+                val intent = Intent(this, Register::class.java)
+                startActivity(intent)
+            }
         }
     }
 }
