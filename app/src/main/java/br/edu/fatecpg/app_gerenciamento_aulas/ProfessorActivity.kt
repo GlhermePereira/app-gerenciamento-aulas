@@ -44,10 +44,15 @@ class ProfessorActivity : AppCompatActivity() {
         // Ao clicar em Gerenciar Horários → abre tela de criação/edição
         btnGerenciarHorarios.setOnClickListener {
             val intent = Intent(this, CriarHorarioActivity::class.java)
+
             startActivity(intent)
         }
         btnVerAgendamentos.setOnClickListener{
-            val intent = Intent(this, CriarHorarioActivity::class.java)
+            val professorId = intent.getStringExtra("professorId") ?: ""
+            val intent = Intent(this, ListaHorariosActivity::class.java)
+            intent.putExtra("professorId", professorId)
+            startActivity(intent)
+
             startActivity(intent)
         }
 

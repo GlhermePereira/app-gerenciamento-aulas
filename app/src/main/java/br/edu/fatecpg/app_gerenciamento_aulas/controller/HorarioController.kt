@@ -34,12 +34,6 @@ object HorarioController {
     /**
      * Lista todos os horários de um professor
      */
-    fun listarHorarios(
-        professorId: String,
-        callback: (List<Horario>) -> Unit
-    ) {
-        HorarioDao.listarDoProfessor(professorId, callback)
-    }
 
     /**
      * Exclui um horário pelo ID

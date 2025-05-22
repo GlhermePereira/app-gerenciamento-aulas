@@ -20,15 +20,21 @@ object HorarioDao {
     /**
      * Lista todos os horários cadastrados por um professor
      */
-    fun listarDoProfessor(professorId: String, onResult: (List<Horario>) -> Unit) {
-        kolle.whereEqualTo("professorId", professorId)
+    fun listarHorarios(callback: (List<Horario>) -> Unit) {
+        val db = FirebaseFirestore.getInstance()
+        db.collection("horarios")
             .get()
-            .addOnSuccessListener { snap ->
-                val lista = snap.mapNotNull { it.toObject(Horario::class.java) }
-                onResult(lista)
+            .addOnSuccessListener { result ->
+                val lista = result.map { doc ->
+                    doc.toObject(Horario::class.java).copy(id = doc.id)
+                }
+                callback(lista)
             }
-            .addOnFailureListener { onResult(emptyList()) }
+            .addOnFailureListener {
+                callback(emptyList())
+            }
     }
+
 
     /**
      * Atualiza um horário existente

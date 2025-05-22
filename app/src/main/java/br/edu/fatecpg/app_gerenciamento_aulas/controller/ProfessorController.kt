@@ -31,9 +31,7 @@ object ProfessorController {
     }
 
 
-    fun listarHorarios(professorId: String, onResult: (List<Horario>) -> Unit) {
-        HorarioDao.listarDoProfessor(professorId, onResult)
-    }
+
 
     fun listarAulas(professorId: String, onResult: (List<Aula>) -> Unit) {
         AulaDao.listarPorProfessor(professorId, onResult)

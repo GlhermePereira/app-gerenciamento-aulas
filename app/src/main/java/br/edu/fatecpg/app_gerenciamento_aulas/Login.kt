@@ -71,12 +71,12 @@ class Login : AppCompatActivity() {
                                             )
                                         )
 
-                                        "professor" -> startActivity(
-                                            Intent(
-                                                this,
-                                                ProfessorActivity::class.java
-                                            )
-                                        )
+                                        "professor" -> {
+                                            val intent = Intent(this, ProfessorActivity::class.java)
+                                            intent.putExtra("professorId", uid)  // envia o uid do professor logado
+                                            startActivity(intent)
+                                        }
+
 
                                         else -> Toast.makeText(
                                             this,

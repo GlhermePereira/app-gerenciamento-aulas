@@ -16,7 +16,7 @@ class EditarHorarioActivity : AppCompatActivity() {
     private lateinit var etDisciplina: EditText
     private lateinit var btnSalvar: Button
 
-    private lateinit var horario: Horario
+    private var horario: Horario = Horario() // usa o construtor vazio
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,12 +27,15 @@ class EditarHorarioActivity : AppCompatActivity() {
         etDisciplina = findViewById(R.id.etDisciplina)
         btnSalvar = findViewById(R.id.btnSalvar)
 
-        horario = intent.getSerializableExtra("horario") as Horario
+        // Recebe o objeto enviado por outra activity (se existir)
+        intent.getSerializableExtra("horario")?.let {
+            horario = it as Horario
 
-        // Preenche os campos com os dados do horário atual
-        etData.setText(horario.data)
-        etHora.setText(horario.hora)
-        etDisciplina.setText(horario.disciplina)
+            // Preenche os campos com os dados do horário atual
+            etData.setText(horario.data)
+            etHora.setText(horario.hora)
+            etDisciplina.setText(horario.disciplina)
+        }
 
         btnSalvar.setOnClickListener {
             val novaData = etData.text.toString()
