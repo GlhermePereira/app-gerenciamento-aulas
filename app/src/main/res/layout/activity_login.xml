@@ -48,15 +48,16 @@
         android:text="Entrar"
         android:textColor="#FFFFFF"
         android:background="@drawable/button_background"/>
+
     <TextView
         android:id="@+id/textRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ainda não tem conta? Cadastre-se"
-        android:textColor="#8be9fd"
-        android:textSize="14sp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="16dp"
         android:clickable="true"
-        android:focusable="true" />
+        android:focusable="true"
+        android:text="Ainda não tem conta? Cadastre-se"
+        android:textColor="#8be9fd"
+        android:textSize="14sp" />
 </LinearLayout>

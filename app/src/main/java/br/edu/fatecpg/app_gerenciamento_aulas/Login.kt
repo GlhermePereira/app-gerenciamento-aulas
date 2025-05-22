@@ -30,7 +30,15 @@ class Login : AppCompatActivity() {
         editTextEmail = findViewById(R.id.email)
         editTextPassword = findViewById(R.id.password)
         buttonLogin = findViewById(R.id.login_button)
+        val textRegister = findViewById<TextView>(R.id.textRegister)
+        textRegister.setOnClickListener {
+            // ação a ser executada
+            Toast.makeText(this, "Ir para cadastro", Toast.LENGTH_SHORT).show()
 
+            // exemplo: abrir outra activity
+            val intent = Intent(this, Register::class.java)
+            startActivity(intent)
+        }
         buttonLogin.setOnClickListener {
             val email = editTextEmail.text.toString().trim()
             val password = editTextPassword.text.toString().trim()
@@ -84,11 +92,7 @@ class Login : AppCompatActivity() {
                 }
 
 
-            val textRegister = findViewById<TextView>(R.id.textRegister)
-            textRegister.setOnClickListener {
-                val intent = Intent(this, Register::class.java)
-                startActivity(intent)
-            }
+
         }
     }
 }

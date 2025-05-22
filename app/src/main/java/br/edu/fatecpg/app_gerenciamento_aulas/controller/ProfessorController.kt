@@ -8,13 +8,28 @@ import br.edu.fatecpg.app_gerenciamento_aulas.model.Horario
 import br.edu.fatecpg.app_gerenciamento_aulas.model.Material
 
 object ProfessorController {
-    fun adicionarHorario(professorId: String, dataHora: String, onComplete: (Boolean) -> Unit) {
+    fun adicionarHorario(
+        id: String = "", // o DAO vai gerar isso
+        data: String,
+        hora: String,
+        disciplina: String,
+        professorId: String,
+        professorNome: String,
+        disponivel: Boolean = true,
+        onComplete: (Boolean) -> Unit
+    ) {
         val horario = Horario(
+            id = id, // normalmente será "" e o DAO gera o ID real
+            data = data,
+            hora = hora,
+            disciplina = disciplina,
             professorId = professorId,
-            hora = dataHora
+            professorNome = professorNome,
+            disponivel = disponivel
         )
         HorarioDao.adicionar(horario, onComplete)
     }
+
 
     fun listarHorarios(professorId: String, onResult: (List<Horario>) -> Unit) {
         HorarioDao.listarDoProfessor(professorId, onResult)
