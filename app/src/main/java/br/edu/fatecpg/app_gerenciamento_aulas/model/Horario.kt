@@ -4,9 +4,13 @@ import com.google.firebase.Timestamp
 
 data class Horario(
     val id: String = "",
+    val data: String = "",
+    val hora: String = "",
+    val disciplina: String = "",
     val professorId: String = "",
-    val dataHora: String = "", // formato tipo "2025-05-22 14:00"
+    val professorNome: String = "",
     val disponivel: Boolean = true
 )
+
 
 

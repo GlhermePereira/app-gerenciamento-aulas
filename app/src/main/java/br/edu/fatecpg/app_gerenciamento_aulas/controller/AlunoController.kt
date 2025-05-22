@@ -9,18 +9,18 @@ import java.time.LocalDate
 object AlunoController {
 
     fun listarHorariosDisponiveis(callback: (List<Horario>) -> Unit) {
-        AlunoDAO.buscarHorariosDisponiveis(callback)
+        AlunoDao.buscarHorariosDisponiveis(callback)
     }
 
     fun agendarAula(horario: Horario, alunoId: String, callback: (Boolean) -> Unit) {
-        AlunoDAO.criarAgendamento(horario, alunoId, callback)
+        AlunoDao.criarAgendamento(horario, alunoId, callback)
     }
 
     fun listarAulasAgendadas(alunoId: String, callback: (List<Agendamento>) -> Unit) {
-        AlunoDAO.buscarAulasAgendadas(alunoId, callback)
+        AlunoDao.buscarAulasAgendadas(alunoId, callback)
     }
 
     fun listarMateriaisHoje(alunoId: String, data: LocalDate, callback: (List<Material>) -> Unit) {
-        AlunoDAO.buscarMateriaisPorData(alunoId, data, callback)
+        AlunoDao.buscarMateriaisPorData(alunoId, data, callback)
     }
 }

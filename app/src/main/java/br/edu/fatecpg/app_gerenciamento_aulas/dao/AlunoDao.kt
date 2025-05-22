@@ -22,31 +22,39 @@ object AlunoDao {
             .addOnFailureListener { callback(emptyList()) }
     }
 
-    fun criarAgendamento(horario: Horario, alunoId: String, callback: (Boolean) -> Unit) {
-        val dataAula = horario.dataHora.substringBefore(" ") // Pega só a parte da data
+    fun criarAgendamento(
+        horario: Horario,
+        alunoId: String,
+        callback: (Boolean) -> Unit
+    ) {
+        // Monta a string completa de data e hora para o agendamento
+        val dataHoraCompleta = "${horario.data} ${horario.hora}"
+        // A dataAula passa a ser apenas o dia (campo data)
+        val dataAula = horario.data
 
         val novoAgendamento = Agendamento(
             alunoId = alunoId,
             professorId = horario.professorId,
-            dataHora = horario.dataHora,
+            dataHora = dataHoraCompleta,
             horarioId = horario.id,
             dataAula = dataAula
         )
 
-        FirebaseFirestore.getInstance().collection("agendamentos")
+        val db = FirebaseFirestore.getInstance()
+        db.collection("agendamentos")
             .add(novoAgendamento)
             .addOnSuccessListener {
-                // Atualiza o horário como indisponível
-                FirebaseFirestore.getInstance().collection("horarios")
+                // Marca o horário como indisponível
+                db.collection("horarios")
                     .document(horario.id)
                     .update("disponivel", false)
-
                 callback(true)
             }
             .addOnFailureListener {
                 callback(false)
             }
     }
+
 
 
     fun buscarAulasAgendadas(alunoId: String, callback: (List<Agendamento>) -> Unit) {

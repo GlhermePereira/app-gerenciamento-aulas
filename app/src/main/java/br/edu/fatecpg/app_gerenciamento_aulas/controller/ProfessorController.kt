@@ -11,7 +11,7 @@ object ProfessorController {
     fun adicionarHorario(professorId: String, dataHora: String, onComplete: (Boolean) -> Unit) {
         val horario = Horario(
             professorId = professorId,
-            dataHora = dataHora
+            hora = dataHora
         )
         HorarioDao.adicionar(horario, onComplete)
     }
