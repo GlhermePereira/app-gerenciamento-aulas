@@ -1,6 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="24dp"
+    android:background="#6A1B9A">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/forgotPassword"
+        android:layout_width="146dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="20sp"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:text="ClickAprenda"
+        android:textColor="@color/white"
+        android:textSize="19sp"
+        tools:ignore="DuplicateIds" />
+
+    <ImageView
+        android:id="@+id/imagemExemplo"
+        android:layout_width="600dp"
+        android:layout_height="350dp"
+        android:paddingBottom="40dp"
+        android:paddingTop="40dp"
+        android:src="@drawable/ClickAprenda" />
+
+    <TextView
+        android:id="@+id/forgotPassword"
+        android:layout_width="140dp"
+        android:layout_height="88dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="20sp"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:paddingBottom="30sp"
+        android:text="Queremos te ajudar!"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        tools:ignore="DuplicateIds" />
+
+    <Button
+        android:id="@+id/login_button"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Cadastrar-se"
+        android:textColor="@color/black"
+        android:layout_marginBottom="18sp"
+        android:background="@drawable/rounded_edittextyellow" />
+
+    <TextView
+        android:id="@+id/btnCadastrar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="Já tem uma conta? Cadastre-se"
+        android:textColor="@color/white"
+        android:textSize="15sp" />
+</LinearLayout>

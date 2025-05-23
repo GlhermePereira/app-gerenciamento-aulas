@@ -1,33 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
+    android:gravity="top"
     android:padding="24dp"
-    android:background="#282A36">
+    android:background="#6A1B9A">
 
-    <TextView
+    <ImageView
+        android:id="@+id/imagemExemplo"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Login"
-        android:textSize="28sp"
-        android:textStyle="bold"
-        android:textColor="#F8F8F2"
-        android:layout_marginBottom="24dp"/>
+        android:layout_height="181dp"
+        android:paddingBottom="20dp"
+        android:src="@drawable/ClickAprenda" />
 
     <EditText
         android:id="@+id/email"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:hint="Email"
-        android:background="@drawable/edit_text_background"
+        android:background="@drawable/rounded_edittext"
         android:padding="10dp"
         android:textColor="#FFFFFF"
         android:textColorHint="#AAAAAA"
         android:layout_marginBottom="16dp" />
-
-
 
     <EditText
         android:id="@+id/password"
@@ -35,25 +32,113 @@
         android:layout_height="50dp"
         android:hint="Senha"
         android:inputType="textPassword"
-        android:background="@drawable/edit_text_background"
+        android:background="@drawable/rounded_edittext"
         android:padding="10dp"
         android:textColor="#FFFFFF"
         android:textColorHint="#AAAAAA"
         android:layout_marginBottom="24dp" />
+
+    <TextView
+        android:id="@+id/forgotPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Esqueceu a senha?"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:paddingBottom="15sp"
+        android:layout_gravity="center_horizontal"
+        android:clickable="true"
+        android:focusable="true"
+        tools:ignore="DuplicateIds" />
 
     <Button
         android:id="@+id/login_button"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:text="Entrar"
-        android:textColor="#FFFFFF"
-        android:background="@drawable/button_background"/>
+        android:textColor="@color/black"
+        android:layout_marginBottom="50sp"
+        android:background="@drawable/rounded_edittextyellow"/>
+
+    <TextView
+        android:id="@+id/orEnter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:clickable="true"
+        android:focusable="true"
+        android:paddingBottom="15sp"
+        android:text="Ou logar com"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        tools:ignore="DuplicateIds" />
+
+
+    <LinearLayout
+        android:id="@+id/google_login_button"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="@drawable/rounded_edittext"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:clickable="true"
+        android:focusable="true">
+
+        <ImageView
+            android:id="@+id/google_logo"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/Googlelogo" />
+
+        <TextView
+            android:id="@+id/google_login_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="Continue com Google"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/facebook_login_button"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="@drawable/rounded_edittextblue"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:clickable="true"
+        android:focusable="true">
+
+        <ImageView
+            android:id="@+id/facebook_logo"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/facebook" />
+
+        <TextView
+            android:id="@+id/facebook_login_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="Continue com Google"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+
     <TextView
         android:id="@+id/textRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Ainda não tem conta? Cadastre-se"
-        android:textColor="#8be9fd"
+        android:textColor="@color/white"
         android:textSize="14sp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="16dp"
