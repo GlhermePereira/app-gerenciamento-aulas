@@ -73,6 +73,8 @@ class CriarHorarioActivity : AppCompatActivity() {
             val data       = edtData.text.toString().trim()
             val hora       = edtHora.text.toString().trim()
             val disciplina = edtDisciplina.text.toString().trim()
+            val professorId = intent.getStringExtra("professorId") ?: ""
+            val professorNome = intent.getStringExtra("professorNome") ?: ""
 
             if (data.isEmpty() || hora.isEmpty() || disciplina.isEmpty()) {
                 Toast.makeText(this, "Preencha todos os campos", Toast.LENGTH_SHORT).show()
@@ -80,7 +82,7 @@ class CriarHorarioActivity : AppCompatActivity() {
             }
 
             HorarioController.criarHorarioDisponivel(
-                data, hora, disciplina, professorId, professorNome
+                data, hora, disciplina,professorNome, professorId
             ) { sucesso, msg ->
                 runOnUiThread {
                     if (sucesso) {

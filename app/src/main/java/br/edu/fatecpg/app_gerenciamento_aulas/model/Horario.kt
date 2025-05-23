@@ -1,6 +1,6 @@
 package br.edu.fatecpg.app_gerenciamento_aulas.model
 
-import com.google.firebase.Timestamp
+import java.io.Serializable
 
 data class Horario(
     val id: String = "",
@@ -11,6 +11,3 @@ data class Horario(
     val professorNome: String = "",
     val disponivel: Boolean = true
 )
-
-
-

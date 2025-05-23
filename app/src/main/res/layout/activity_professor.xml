@@ -29,13 +29,6 @@
             android:text="Gerenciar Horários" />
 
         <Button
-            android:id="@+id/btnAdicionarMaterial"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Adicionar Materiais de Estudo"
-            android:layout_marginTop="12dp" />
-
-        <Button
             android:id="@+id/btnVerAgendamentos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

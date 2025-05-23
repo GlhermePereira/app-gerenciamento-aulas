@@ -4,22 +4,63 @@ import br.edu.fatecpg.app_gerenciamento_aulas.model.Horario
 import com.google.firebase.firestore.FirebaseFirestore
 
 object HorarioDao {
-    private val db = FirebaseFirestore.getInstance().collection("horarios")
+    private val kolle = FirebaseFirestore.getInstance().collection("horarios")
 
+    /**
+     * Adiciona um novo horário, preenchendo o ID antes de salvar
+     */
     fun adicionar(horario: Horario, onComplete: (Boolean) -> Unit) {
-        val doc = db.document()
-        val novoHorario = horario.copy(id = doc.id)
-        doc.set(novoHorario)
+        val docRef = kolle.document()
+        val novoHorario = horario.copy(id = docRef.id)
+        docRef.set(novoHorario)
             .addOnSuccessListener { onComplete(true) }
             .addOnFailureListener { onComplete(false) }
     }
 
-    fun listarDoProfessor(professorId: String, onResult: (List<Horario>) -> Unit) {
-        db.whereEqualTo("professorId", professorId)
+    /**
+     * Lista todos os horários cadastrados por um professor
+     */
+    fun listarHorarios(callback: (List<Horario>) -> Unit) {
+        val db = FirebaseFirestore.getInstance()
+        db.collection("horarios")
             .get()
-            .addOnSuccessListener { snapshot ->
-                val lista = snapshot.toObjects(Horario::class.java)
-                onResult(lista)
+            .addOnSuccessListener { result ->
+                val lista = result.map { doc ->
+                    doc.toObject(Horario::class.java).copy(id = doc.id)
+                }
+                callback(lista)
             }
+            .addOnFailureListener {
+                callback(emptyList())
+            }
+    }
+
+
+    /**
+     * Atualiza um horário existente
+     */
+    fun atualizar(horario: Horario, onComplete: (Boolean) -> Unit) {
+        if (horario.id.isBlank()) {
+            onComplete(false)
+            return
+        }
+        kolle.document(horario.id)
+            .set(horario)
+            .addOnSuccessListener { onComplete(true) }
+            .addOnFailureListener { onComplete(false) }
+    }
+
+    /**
+     * Exclui um horário pelo seu ID
+     */
+    fun excluir(horarioId: String, onComplete: (Boolean) -> Unit) {
+        if (horarioId.isBlank()) {
+            onComplete(false)
+            return
+        }
+        kolle.document(horarioId)
+            .delete()
+            .addOnSuccessListener { onComplete(true) }
+            .addOnFailureListener { onComplete(false) }
     }
 }
