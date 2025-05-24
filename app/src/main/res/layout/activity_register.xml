@@ -1,32 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#282A36">
+    android:background="#6A1B9A"
+    android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="24dp"
-        android:gravity="center">
+        android:layout_margin="24dp"
+        android:gravity="top">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="140dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/click_aprenda"
+            android:contentDescription="Logo Click Aprenda"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Cadastro"
+            android:text="Crie sua conta"
             android:textSize="28sp"
-            android:textColor="#F8F8F2"
-            android:layout_marginBottom="24dp"
+            android:textColor="@color/white"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="13dp"
             android:textStyle="bold"/>
+
+        <LinearLayout
+            android:id="@+id/google_register_button"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:background="@drawable/rounded_edittext"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:clickable="true"
+            android:focusable="true">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/Googlelogo"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="Continue com Google"
+                android:textColor="@color/black"
+                android:textSize="16sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/facebook_register_button"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:background="@drawable/rounded_edittextblue"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:layout_marginBottom="20dp"
+            android:clickable="true"
+            android:focusable="true">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/facebook"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="Continue com Facebook"
+                android:textColor="@color/white"
+                android:textSize="16sp"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Ou cadastre-se com e-mail"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:layout_marginBottom="16dp"/>
 
         <EditText
             android:id="@+id/nome"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:hint="Nome completo"
-            android:background="@drawable/edit_text_background"
+            android:background="@drawable/rounded_edittext"
             android:padding="12dp"
             android:textColor="#FFFFFF"
             android:textColorHint="#AAAAAA"
@@ -38,7 +111,7 @@
             android:layout_height="50dp"
             android:hint="Email"
             android:inputType="textEmailAddress"
-            android:background="@drawable/edit_text_background"
+            android:background="@drawable/rounded_edittext"
             android:padding="12dp"
             android:textColor="#FFFFFF"
             android:textColorHint="#AAAAAA"
@@ -50,50 +123,63 @@
             android:layout_height="50dp"
             android:hint="Senha"
             android:inputType="textPassword"
-            android:background="@drawable/edit_text_background"
+            android:background="@drawable/rounded_edittext"
             android:padding="12dp"
             android:textColor="#FFFFFF"
             android:textColorHint="#AAAAAA"
             android:layout_marginBottom="16dp"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Tipo de Usuário:"
-            android:textColor="#F8F8F2"
-            android:layout_marginBottom="8dp"/>
-
-        <RadioGroup
-            android:id="@+id/radioGroupTipo"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:gravity="center_vertical"
             android:layout_marginBottom="24dp">
 
-            <RadioButton
-                android:id="@+id/radioAluno"
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Aluno"
-                android:textColor="#F8F8F2"
-                tools:ignore="TouchTargetSizeCheck" />
+                android:text="Estou de acordo com os "
+                android:textColor="@color/white"
+                android:textSize="14sp"/>
 
-            <RadioButton
-                android:id="@+id/radioProfessor"
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:text="Professor"
-                android:textColor="#F8F8F2"
-                tools:ignore="TouchTargetSizeCheck" />
-        </RadioGroup>
+                android:text="termos de serviço"
+                android:textColor="#FFA500"
+                android:textSize="14sp"
+                android:clickable="true"
+                android:focusable="true"/>
+
+            <CheckBox
+                android:id="@+id/checkTermos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:buttonTint="#FFA500"
+                android:focusable="false"/>
+        </LinearLayout>
 
         <Button
             android:id="@+id/btnCadastrar"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:text="Cadastrar"
-            android:background="@drawable/button_background"
-            android:textColor="#FFFFFF"/>
+            android:textColor="@color/black"
+            android:background="@drawable/rounded_edittextyellow"
+            android:layout_marginBottom="10dp"/>
+
+        <TextView
+            android:id="@+id/orLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Já tem uma conta? Faça login"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:layout_marginBottom="16dp"
+            android:clickable="true"
+            android:focusable="true"/>
     </LinearLayout>
 </ScrollView>

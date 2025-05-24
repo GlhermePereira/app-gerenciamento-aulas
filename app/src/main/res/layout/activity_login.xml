@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="181dp"
         android:paddingBottom="20dp"
-        android:src="@drawable/ClickAprenda" />
+        android:src="@drawable/click_aprenda" />
 
     <EditText
         android:id="@+id/email"

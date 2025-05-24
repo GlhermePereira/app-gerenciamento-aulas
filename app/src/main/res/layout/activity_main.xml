@@ -28,7 +28,7 @@
         android:layout_height="350dp"
         android:paddingBottom="40dp"
         android:paddingTop="40dp"
-        android:src="@drawable/ClickAprenda" />
+        android:src="@drawable/click_aprenda" />
 
     <TextView
         android:id="@+id/forgotPassword"
