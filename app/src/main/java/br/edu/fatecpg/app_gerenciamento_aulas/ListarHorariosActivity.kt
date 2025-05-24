@@ -24,25 +24,25 @@ class ListarHorariosActivity : AppCompatActivity() {
 
         recyclerView = findViewById(R.id.rvAgendamentos)
         val btnVoltar = findViewById<Button>(R.id.btnVoltarProfessor)
-
-        adapter = HorarioAdapter(horarios,
+        val adapter = HorarioAdapter(
+            horarios,
             onEditar = { horario ->
                 val intent = Intent(this, EditarHorarioActivity::class.java)
-                intent.putExtra("horarioId", horario.id)
+                intent.putExtra("horario_id", horario.id)  // Passa o ID
                 startActivity(intent)
+
             },
             onExcluir = { horario ->
-                HorarioDao.excluir(horario.id) { sucesso ->
-                    if (sucesso) {
-                        Toast.makeText(this, "Horário excluído", Toast.LENGTH_SHORT).show()
-                        horarios.remove(horario)
-                        adapter.notifyDataSetChanged()
-                    } else {
-                        Toast.makeText(this, "Erro ao excluir", Toast.LENGTH_LONG).show()
-                    }
-                }
+                // Já está tratado dentro do adapter
+            },
+            onAdicionarMaterial = { horario ->
+                val intent = Intent(this, AdicionarMaterialActivity::class.java)
+                intent.putExtra("horario_id", horario.id)
+                startActivity(intent)
             }
         )
+
+        recyclerView.adapter = adapter
 
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = adapter
