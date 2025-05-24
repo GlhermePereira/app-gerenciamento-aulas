@@ -13,7 +13,8 @@
         android:theme="@style/Theme.Appgerenciamentoaulas"
         tools:targetApi="31">
 
-        <activity android:name=".ListaHorariosActivity" android:exported="false" />
+        <activity android:name=".ListarHorariosActivity" android:exported="false" />
+        <activity android:name=".view.EditarHorarioActivity" android:exported="false" />
 
         <activity
             android:name=".AgendamentosActivity"

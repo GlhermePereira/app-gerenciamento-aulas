@@ -24,11 +24,12 @@ class ProfessorActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val professorId = intent.getIntExtra("professorId", -1)
+
         setContentView(R.layout.activity_professor)
 
         // Pega dados do professor logado
         FirebaseAuth.getInstance().currentUser?.let { user ->
-            professorId   = user.uid
             professorNome = user.displayName ?: "Professor"
         } ?: run {
             Toast.makeText(this, "Usuário não autenticado", Toast.LENGTH_LONG).show()
@@ -44,16 +45,14 @@ class ProfessorActivity : AppCompatActivity() {
         // Ao clicar em Gerenciar Horários → abre tela de criação/edição
         btnGerenciarHorarios.setOnClickListener {
             val intent = Intent(this, CriarHorarioActivity::class.java)
-            val professorId = intent.getStringExtra("professorId") ?: ""
             intent.putExtra("professorId", professorId)
-            val professorNome = intent.getStringExtra("professorNome")
             startActivity(intent)
+
         }
         btnVerAgendamentos.setOnClickListener{
             val professorId = intent.getStringExtra("professorId") ?: ""
-            val intent = Intent(this, ListaHorariosActivity::class.java)
+            val intent = Intent(this, ListarHorariosActivity::class.java)
             intent.putExtra("professorId", professorId)
-            val professorNome = intent.getStringExtra("professorNome")
             startActivity(intent)
         }
 

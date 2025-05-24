@@ -22,6 +22,7 @@ class Register : AppCompatActivity() {
 
         val buttonReg = findViewById<Button>(R.id.btnCadastrar)
         buttonReg.setOnClickListener {
+            val nome= findViewById<EditText>(R.id.nome).text.toString().trim()
             val email = findViewById<EditText>(R.id.email).text.toString().trim()
             val password = findViewById<EditText>(R.id.senha).text.toString().trim()  // Ajuste aqui conforme seu XML
 
@@ -44,7 +45,7 @@ class Register : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            val user = User(email, tipo)
+            val user = User(email, tipo,nome)
             controller.registrar(user, password) { success, errorMsg ->
                 if (success) {
                     Toast.makeText(this, "Usuário registrado com sucesso!", Toast.LENGTH_SHORT).show()

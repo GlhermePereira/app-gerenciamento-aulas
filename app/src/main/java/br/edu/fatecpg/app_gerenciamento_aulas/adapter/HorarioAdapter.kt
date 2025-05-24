@@ -3,17 +3,26 @@ package br.edu.fatecpg.app_gerenciamento_aulas.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import br.edu.fatecpg.app_gerenciamento_aulas.R
+import br.edu.fatecpg.app_gerenciamento_aulas.dao.HorarioDao
 import br.edu.fatecpg.app_gerenciamento_aulas.model.Horario
 
-class HorarioAdapter(private val lista: List<Horario>) :
-    RecyclerView.Adapter<HorarioAdapter.HorarioViewHolder>() {
+class HorarioAdapter(
+    private val horarios: MutableList<Horario>,
+    private val onEditar: (Horario) -> Unit,
+    private val onExcluir: (Horario) -> Unit
+) : RecyclerView.Adapter<HorarioAdapter.HorarioViewHolder>() {
 
-    class HorarioViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val dataHora: TextView = view.findViewById(R.id.tvDataHora)
-        val disciplina: TextView = view.findViewById(R.id.tvDisciplina)
+    inner class HorarioViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val tvDataHora = itemView.findViewById<TextView>(R.id.tvDataHora)
+        val tvDisciplina = itemView.findViewById<TextView>(R.id.tvDisciplina)
+        val tvProfessor = itemView.findViewById<TextView>(R.id.tvProfessor)
+        val btnExcluir = itemView.findViewById<Button>(R.id.btnExcluir)
+        val btnEditar = itemView.findViewById<Button>(R.id.btnEditar)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HorarioViewHolder {
@@ -23,10 +32,31 @@ class HorarioAdapter(private val lista: List<Horario>) :
     }
 
     override fun onBindViewHolder(holder: HorarioViewHolder, position: Int) {
-        val horario = lista[position]
-        holder.dataHora.text = "${horario.data} ${horario.hora}"
-        holder.disciplina.text = horario.disciplina
+        val horario = horarios[position]
+
+        holder.tvDataHora.text = "${horario.data} - ${horario.hora}"
+        holder.tvDisciplina.text = horario.disciplina
+        holder.tvProfessor.text = horario.professorNome
+
+        // 👉 Aqui vai o código para excluir
+        holder.btnExcluir.setOnClickListener {
+            val context = holder.itemView.context
+            HorarioDao.excluir(horario.id) { sucesso ->
+                if (sucesso) {
+                    Toast.makeText(context, "Horário excluído", Toast.LENGTH_SHORT).show()
+                    horarios.removeAt(position)
+                    notifyItemRemoved(position)
+                } else {
+                    Toast.makeText(context, "Erro ao excluir", Toast.LENGTH_LONG).show()
+                }
+            }
+        }
+
+        // Você pode adicionar lógica de edição aqui também
+        holder.btnEditar.setOnClickListener {
+            // exemplo: abrir nova tela com os dados para editar
+        }
     }
 
-    override fun getItemCount(): Int = lista.size
+    override fun getItemCount(): Int = horarios.size
 }
