@@ -14,7 +14,8 @@ import br.edu.fatecpg.app_gerenciamento_aulas.model.Horario
 class HorarioAdapter(
     private val horarios: MutableList<Horario>,
     private val onEditar: (Horario) -> Unit,
-    private val onExcluir: (Horario) -> Unit
+    private val onExcluir: (Horario) -> Unit,
+    private val onAdicionarMaterial: (Horario) -> Unit
 ) : RecyclerView.Adapter<HorarioAdapter.HorarioViewHolder>() {
 
     inner class HorarioViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -23,6 +24,7 @@ class HorarioAdapter(
         val tvProfessor = itemView.findViewById<TextView>(R.id.tvProfessor)
         val btnExcluir = itemView.findViewById<Button>(R.id.btnExcluir)
         val btnEditar = itemView.findViewById<Button>(R.id.btnEditar)
+        val btnAdicionarMaterial = itemView.findViewById<Button>(R.id.btnAdicionarMaterial)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HorarioViewHolder {
@@ -38,7 +40,10 @@ class HorarioAdapter(
         holder.tvDisciplina.text = horario.disciplina
         holder.tvProfessor.text = horario.professorNome
 
-        // 👉 Aqui vai o código para excluir
+        holder.btnEditar.setOnClickListener {
+            onEditar(horario)
+        }
+
         holder.btnExcluir.setOnClickListener {
             val context = holder.itemView.context
             HorarioDao.excluir(horario.id) { sucesso ->
@@ -52,9 +57,8 @@ class HorarioAdapter(
             }
         }
 
-        // Você pode adicionar lógica de edição aqui também
-        holder.btnEditar.setOnClickListener {
-            // exemplo: abrir nova tela com os dados para editar
+        holder.btnAdicionarMaterial.setOnClickListener {
+            onAdicionarMaterial(horario)
         }
     }
 

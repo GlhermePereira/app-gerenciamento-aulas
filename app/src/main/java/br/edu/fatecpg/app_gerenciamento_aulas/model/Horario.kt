@@ -10,4 +10,4 @@ data class Horario(
     val professorId: String = "",
     val professorNome: String = "",
     val disponivel: Boolean = true
-)
+) : Serializable
