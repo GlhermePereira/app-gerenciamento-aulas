@@ -19,12 +19,12 @@
             android:layout_height="140dp"
             android:layout_gravity="center_horizontal"
             android:src="@drawable/click_aprenda"
-            android:contentDescription="Logo Click Aprenda"/>
+            android:contentDescription="@string/logo_click_aprenda"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Crie sua conta"
+            android:text="@string/crie_sua_conta"
             android:textSize="28sp"
             android:textColor="@color/white"
             android:layout_gravity="center_horizontal"
@@ -47,13 +47,14 @@
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="@drawable/Googlelogo"/>
+                android:contentDescription="@string/googlebtn2"
+                android:src="@drawable/google"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:text="Continue com Google"
+                android:text="@string/continue_com_google2"
                 android:textColor="@color/black"
                 android:textSize="16sp"/>
         </LinearLayout>
@@ -74,13 +75,14 @@
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
+                android:contentDescription="@string/facebookbtn2"
                 android:src="@drawable/facebook"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:text="Continue com Facebook"
+                android:text="@string/continue_com_facebook2"
                 android:textColor="@color/white"
                 android:textSize="16sp"/>
         </LinearLayout>
@@ -89,7 +91,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="Ou cadastre-se com e-mail"
+            android:text="@string/ou_cadastre_se_com_e_mail"
             android:textColor="@color/white"
             android:textSize="14sp"
             android:layout_marginBottom="16dp"/>
@@ -98,10 +100,12 @@
             android:id="@+id/nome"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:hint="Nome completo"
+            android:autofillHints=""
+            android:hint="@string/nome_completo"
             android:background="@drawable/rounded_edittext"
+            android:inputType="textPersonName"
             android:padding="12dp"
-            android:textColor="#FFFFFF"
+            android:textColor="#000000"
             android:textColorHint="#AAAAAA"
             android:layout_marginBottom="16dp"/>
 
@@ -109,11 +113,12 @@
             android:id="@+id/email"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:hint="Email"
+            android:autofillHints=""
+            android:hint="@string/email2"
             android:inputType="textEmailAddress"
             android:background="@drawable/rounded_edittext"
             android:padding="12dp"
-            android:textColor="#FFFFFF"
+            android:textColor="#000000"
             android:textColorHint="#AAAAAA"
             android:layout_marginBottom="16dp"/>
 
@@ -121,13 +126,38 @@
             android:id="@+id/senha"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:hint="Senha"
+            android:autofillHints=""
+            android:hint="@string/senha2"
             android:inputType="textPassword"
             android:background="@drawable/rounded_edittext"
             android:padding="12dp"
-            android:textColor="#FFFFFF"
+            android:textColor="#000000"
             android:textColorHint="#AAAAAA"
             android:layout_marginBottom="16dp"/>
+
+        <RadioGroup
+            android:id="@+id/radioGroupTipo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="24dp">
+            <RadioButton
+                android:id="@+id/radioAluno"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/alunoOp"
+                android:textColor="#F8F8F2"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <RadioButton
+                android:id="@+id/radioProfessor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:text="@string/professorOp"
+                android:textColor="#F8F8F2"
+                tools:ignore="TouchTargetSizeCheck" />
+        </RadioGroup>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -139,14 +169,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Estou de acordo com os "
+                android:text="@string/estou_de_acordo_com_os"
                 android:textColor="@color/white"
                 android:textSize="14sp"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="termos de serviço"
+                android:text="@string/termos_de_servi_o"
                 android:textColor="#FFA500"
                 android:textSize="14sp"
                 android:clickable="true"
@@ -165,7 +195,7 @@
             android:id="@+id/btnCadastrar"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:text="Cadastrar"
+            android:text="@string/cadastrar"
             android:textColor="@color/black"
             android:background="@drawable/rounded_edittextyellow"
             android:layout_marginBottom="10dp"/>
@@ -175,7 +205,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="Já tem uma conta? Faça login"
+            android:text="@string/j_tem_uma_conta_fa_a_login"
             android:textColor="@color/white"
             android:textSize="14sp"
             android:layout_marginBottom="16dp"

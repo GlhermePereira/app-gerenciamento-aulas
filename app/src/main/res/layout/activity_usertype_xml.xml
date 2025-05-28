@@ -10,6 +10,7 @@
     <ImageView
         android:layout_width="30dp"
         android:layout_height="30dp"
+        android:contentDescription="@string/starpng"
         android:src="@drawable/star"
         android:alpha="0.7"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,6 +21,7 @@
     <ImageView
         android:layout_width="25dp"
         android:layout_height="25dp"
+        android:contentDescription="@string/starpng2"
         android:src="@drawable/star"
         android:alpha="0.5"
         app:layout_constraintEnd_toEndOf="parent"
@@ -30,6 +32,7 @@
     <ImageView
         android:layout_width="20dp"
         android:layout_height="20dp"
+        android:contentDescription="@string/starpng3"
         android:src="@drawable/star"
         android:alpha="0.6"
         app:layout_constraintStart_toStartOf="parent"
@@ -40,6 +43,7 @@
     <ImageView
         android:layout_width="35dp"
         android:layout_height="35dp"
+        android:contentDescription="@string/starpng4"
         android:src="@drawable/star"
         android:alpha="0.4"
         app:layout_constraintEnd_toEndOf="parent"
@@ -50,6 +54,7 @@
     <ImageView
         android:layout_width="15dp"
         android:layout_height="15dp"
+        android:contentDescription="@string/starpng5"
         android:src="@drawable/star"
         android:alpha="0.8"
         app:layout_constraintStart_toStartOf="parent"
@@ -61,6 +66,7 @@
     <ImageView
         android:layout_width="40dp"
         android:layout_height="40dp"
+        android:contentDescription="@string/starpng6"
         android:src="@drawable/star"
         android:alpha="0.3"
         app:layout_constraintEnd_toEndOf="parent"
@@ -74,7 +80,7 @@
         android:id="@+id/textViewTipoUsuario"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Bem-Vindo(a)!\n\nEscolha o tipo de usuário\n para começar:"
+        android:text="@string/bem_vindo_a_n_nescolha_o_tipo_de_usu_rio_n_para_come_ar"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="25sp"
@@ -121,14 +127,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:src="@drawable/professor_logo"
-                    android:contentDescription="Ícone Professor"
+                    android:contentDescription="@string/cone_professor"
                     android:scaleType="fitCenter"
                     android:layout_marginBottom="8dp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Professor"
+                    android:text="@string/professor"
                     android:textColor="@color/white"
                     android:textSize="18sp"
                     android:textStyle="bold"/>
@@ -159,14 +165,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:src="@drawable/student_logo"
-                    android:contentDescription="Ícone Aluno"
+                    android:contentDescription="@string/cone_aluno"
                     android:scaleType="fitCenter"
                     android:layout_marginBottom="8dp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Aluno"
+                    android:text="@string/aluno"
                     android:textColor="@color/white"
                     android:textSize="18sp"
                     android:textStyle="bold"/>

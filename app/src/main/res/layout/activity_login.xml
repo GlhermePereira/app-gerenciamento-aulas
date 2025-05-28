@@ -12,6 +12,7 @@
         android:id="@+id/imagemExemplo"
         android:layout_width="wrap_content"
         android:layout_height="181dp"
+        android:contentDescription="@string/logoapp"
         android:paddingBottom="20dp"
         android:src="@drawable/click_aprenda" />
 
@@ -19,22 +20,25 @@
         android:id="@+id/email"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:hint="Email"
+        android:autofillHints=""
+        android:hint="@string/email"
         android:background="@drawable/rounded_edittext"
         android:padding="10dp"
-        android:textColor="#FFFFFF"
+        android:textColor="#000000"
         android:textColorHint="#AAAAAA"
-        android:layout_marginBottom="16dp" />
+        android:layout_marginBottom="16dp"
+        tools:ignore="TextFields" />
 
     <EditText
         android:id="@+id/password"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:hint="Senha"
+        android:autofillHints=""
+        android:hint="@string/senha"
         android:inputType="textPassword"
         android:background="@drawable/rounded_edittext"
         android:padding="10dp"
-        android:textColor="#FFFFFF"
+        android:textColor="#000000"
         android:textColorHint="#AAAAAA"
         android:layout_marginBottom="24dp" />
 
@@ -42,7 +46,7 @@
         android:id="@+id/forgotPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Esqueceu a senha?"
+        android:text="@string/esqueceu_a_senha"
         android:textColor="@color/white"
         android:textSize="14sp"
         android:paddingBottom="15sp"
@@ -55,7 +59,7 @@
         android:id="@+id/login_button"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="Entrar"
+        android:text="@string/entrar"
         android:textColor="@color/black"
         android:layout_marginBottom="50sp"
         android:background="@drawable/rounded_edittextyellow"/>
@@ -68,7 +72,7 @@
         android:clickable="true"
         android:focusable="true"
         android:paddingBottom="15sp"
-        android:text="Ou logar com"
+        android:text="@string/ou_logar_com"
         android:textColor="@color/white"
         android:textSize="14sp"
         tools:ignore="DuplicateIds" />
@@ -91,14 +95,15 @@
             android:id="@+id/google_logo"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:src="@drawable/Googlelogo" />
+            android:contentDescription="@string/googlebtn"
+            android:src="@drawable/google" />
 
         <TextView
             android:id="@+id/google_login_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="Continue com Google"
+            android:text="@string/continue_com_google"
             android:textColor="@color/black"
             android:textSize="16sp" />
     </LinearLayout>
@@ -120,6 +125,7 @@
             android:id="@+id/facebook_logo"
             android:layout_width="30dp"
             android:layout_height="30dp"
+            android:contentDescription="@string/facebookbtn"
             android:src="@drawable/facebook" />
 
         <TextView
@@ -127,7 +133,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="Continue com Google"
+            android:text="@string/continue_com_facebook"
             android:textColor="@color/white"
             android:textSize="16sp" />
     </LinearLayout>
@@ -137,7 +143,7 @@
         android:id="@+id/textRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ainda não tem conta? Cadastre-se"
+        android:text="@string/ainda_n_o_tem_conta_cadastre_se"
         android:textColor="@color/white"
         android:textSize="14sp"
         android:layout_gravity="center_horizontal"
