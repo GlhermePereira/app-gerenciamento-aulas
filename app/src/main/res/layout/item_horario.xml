@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="horizontal"
     android:padding="12dp"
     android:layout_width="match_parent"
@@ -14,58 +15,57 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/tvDataHora"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Data - Hora"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-
-        <TextView
             android:id="@+id/tvDisciplina"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Disciplina"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/tvProfessor"
+            android:id="@+id/tvDataHora"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Professor"
-            android:textSize="14sp" />
+            android:text="Data - Hora"
+            android:textSize="14sp"
+            android:textColor="#666666" />
     </LinearLayout>
 
-    <!-- Parte dos botões -->
+    <!-- Parte dos ícones -->
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="end|center_vertical">
 
-        <Button
+        <ImageButton
             android:id="@+id/btnEditar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Editar"
-            android:textSize="12sp"
-            android:layout_marginEnd="4dp" />
+            android:background="?android:selectableItemBackgroundBorderless"
+            android:contentDescription="Editar"
+            android:src="@android:drawable/ic_menu_edit"
+            tools:ignore="TouchTargetSizeCheck" />
 
-        <Button
+        <ImageButton
             android:id="@+id/btnExcluir"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Excluir"
-            android:textSize="12sp"
-            android:layout_marginEnd="4dp" />
+            android:layout_marginStart="4dp"
+            android:background="?android:selectableItemBackgroundBorderless"
+            android:contentDescription="Excluir"
+            android:src="@android:drawable/ic_menu_delete"
+            tools:ignore="TouchTargetSizeCheck" />
 
-        <Button
+        <ImageButton
             android:id="@+id/btnAdicionarMaterial"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Adicionar"
-            android:textSize="12sp" />
+            android:layout_marginStart="4dp"
+            android:background="?android:selectableItemBackgroundBorderless"
+            android:contentDescription="Adicionar Material"
+            android:src="@android:drawable/ic_input_add"
+            tools:ignore="TouchTargetSizeCheck" />
 
     </LinearLayout>
-
 </LinearLayout>

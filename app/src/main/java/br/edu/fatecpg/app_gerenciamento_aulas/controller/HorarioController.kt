@@ -2,12 +2,10 @@ package br.edu.fatecpg.app_gerenciamento_aulas.controller
 
 import br.edu.fatecpg.app_gerenciamento_aulas.dao.HorarioDao
 import br.edu.fatecpg.app_gerenciamento_aulas.model.Horario
+import com.google.firebase.firestore.FirebaseFirestore
 
 object HorarioController {
 
-    /**
-     * Cria um novo horário disponível para agendamento
-     */
     fun criarHorarioDisponivel(
         data: String,
         hora: String,
@@ -31,33 +29,27 @@ object HorarioController {
         }
     }
 
-    /**
-     * Lista todos os horários de um professor
-     */
 
-    /**
-     * Exclui um horário pelo ID
-     */
-    fun deletarHorario(
-        horarioId: String,
-        callback: (Boolean, String) -> Unit
-    ) {
-        HorarioDao.excluir(horarioId) { sucesso ->
-            if (sucesso) callback(true, "")
-            else callback(false, "Falha ao excluir horário")
-        }
+    fun atualizarHorario(horario: Horario, callback: (Boolean, String) -> Unit) {
+        val db = FirebaseFirestore.getInstance()
+        db.collection("horarios")
+            .document(horario.id)
+            .update(
+                mapOf(
+                    "data" to horario.data,
+                    "disciplina" to horario.disciplina,
+                    "disponivel" to horario.disponivel,
+                    "hora" to horario.hora,
+                    "professorNome" to horario.professorNome
+
+                )
+            )
+            .addOnSuccessListener {
+                callback(true, "Atualizado com sucesso")
+            }
+            .addOnFailureListener {
+                callback(false, "Erro ao atualizar: ${it.message}")
+            }
     }
 
-    /**
-     * Atualiza um horário existente
-     */
-    fun atualizarHorario(
-        horario: Horario,
-        callback: (Boolean, String) -> Unit
-    ) {
-        HorarioDao.atualizar(horario) { sucesso ->
-            if (sucesso) callback(true, "")
-            else callback(false, "Falha ao atualizar horário")
-        }
-    }
 }

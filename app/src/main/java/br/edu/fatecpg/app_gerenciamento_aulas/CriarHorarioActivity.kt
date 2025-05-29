@@ -24,9 +24,9 @@ import java.util.*class CriarHorarioActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_criar_horario)
 
-        edtData       = findViewById(R.id.edtData)
-        edtHora       = findViewById(R.id.edtHora)
-        edtDisciplina = findViewById(R.id.edtDisciplina)
+        edtData       = findViewById(R.id.etData)
+        edtHora       = findViewById(R.id.etHora)
+        edtDisciplina = findViewById(R.id.etDisciplina)
         btnSalvar     = findViewById(R.id.btnSalvar)
 
         FirebaseAuth.getInstance().currentUser?.let { user ->

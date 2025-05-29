@@ -33,7 +33,6 @@ class ListarHorariosActivity : AppCompatActivity() {
 
             },
             onExcluir = { horario ->
-                // Já está tratado dentro do adapter
             },
             onAdicionarMaterial = { horario ->
                 val intent = Intent(this, AdicionarMaterialActivity::class.java)

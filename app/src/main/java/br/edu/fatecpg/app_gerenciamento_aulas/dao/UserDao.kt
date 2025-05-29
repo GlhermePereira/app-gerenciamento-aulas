@@ -1,33 +1,48 @@
 package br.edu.fatecpg.app_gerenciamento_aulas.dao
-import br.edu.fatecpg.app_gerenciamento_aulas.model.User
+
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FirebaseFirestore
 
-class UserDao {
+object UsuarioDao {
 
-    private val db = FirebaseFirestore.getInstance()
-    private val usersCollection = db.collection("usuarios")
+    private val auth = FirebaseAuth.getInstance()
+    private val firestore = FirebaseFirestore.getInstance()
 
-    fun saveUser(user: User, onComplete: (Boolean, Exception?) -> Unit) {
-        usersCollection.document(user.email)
-            .set(user)
+    /**
+     * Faz o login do usuário usando FirebaseAuth e busca o tipo no Firestore.
+     * callback(success, errorMessage, tipoUsuario, uid)
+     */
+    fun logar(
+        email: String,
+        senha: String,
+        callback: (Boolean, String?, String?, String?) -> Unit
+    ) {
+        auth.signInWithEmailAndPassword(email, senha)
             .addOnCompleteListener { task ->
-                onComplete(task.isSuccessful, task.exception)
-            }
-    }
-
-    fun getUserById(id: String, onComplete: (User?) -> Unit) {
-        usersCollection.document(id).get()
-            .addOnSuccessListener { document ->
-                if (document != null && document.exists()) {
-                    val user = document.toObject(User::class.java)
-                    onComplete(user)
+                if (task.isSuccessful) {
+                    val uid = auth.currentUser?.uid
+                    if (uid == null) {
+                        callback(false, "Usuário não encontrado", null, null)
+                        return@addOnCompleteListener
+                    }
+                    // Busca tipo do usuário
+                    firestore.collection("usuarios")
+                        .document(uid)
+                        .get()
+                        .addOnSuccessListener { doc ->
+                            val tipo = doc.getString("tipo")
+                            if (tipo == null) {
+                                callback(false, "Tipo de usuário não definido", null, null)
+                            } else {
+                                callback(true, null, tipo, uid)
+                            }
+                        }
+                        .addOnFailureListener {
+                            callback(false, "Falha ao buscar dados do usuário", null, null)
+                        }
                 } else {
-                    onComplete(null)
+                    callback(false, task.exception?.message ?: "Falha no login", null, null)
                 }
             }
     }
-
-    // Outros métodos como atualizar, deletar, etc.
 }

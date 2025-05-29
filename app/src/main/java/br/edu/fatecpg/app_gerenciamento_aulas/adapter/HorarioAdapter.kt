@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
@@ -21,10 +22,9 @@ class HorarioAdapter(
     inner class HorarioViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tvDataHora = itemView.findViewById<TextView>(R.id.tvDataHora)
         val tvDisciplina = itemView.findViewById<TextView>(R.id.tvDisciplina)
-        val tvProfessor = itemView.findViewById<TextView>(R.id.tvProfessor)
-        val btnExcluir = itemView.findViewById<Button>(R.id.btnExcluir)
-        val btnEditar = itemView.findViewById<Button>(R.id.btnEditar)
-        val btnAdicionarMaterial = itemView.findViewById<Button>(R.id.btnAdicionarMaterial)
+        val btnExcluir = itemView.findViewById<ImageButton>(R.id.btnExcluir)
+        val btnEditar = itemView.findViewById<ImageButton>(R.id.btnEditar)
+        val btnAdicionarMaterial = itemView.findViewById<ImageButton>(R.id.btnAdicionarMaterial)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HorarioViewHolder {
@@ -38,7 +38,6 @@ class HorarioAdapter(
 
         holder.tvDataHora.text = "${horario.data} - ${horario.hora}"
         holder.tvDisciplina.text = horario.disciplina
-        holder.tvProfessor.text = horario.professorNome
 
         holder.btnEditar.setOnClickListener {
             onEditar(horario)
