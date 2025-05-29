@@ -4,7 +4,6 @@ import androidx.annotation.RequiresApi
 import br.edu.fatecpg.app_gerenciamento_aulas.dao.AlunoDao
 import br.edu.fatecpg.app_gerenciamento_aulas.model.Agendamento
 import br.edu.fatecpg.app_gerenciamento_aulas.model.Horario
-import br.edu.fatecpg.app_gerenciamento_aulas.model.Material
 import java.time.LocalDate
 
 object AgendamentoController {
@@ -23,12 +22,5 @@ object AgendamentoController {
         }
     }
 
-    // Buscar materiais da aula de hoje
-    @RequiresApi(Build.VERSION_CODES.O)
-    fun buscarMateriaisDeHoje(alunoId: String, callback: (List<Material>) -> Unit) {
-        val hoje = LocalDate.now()
-        AlunoDao.buscarMateriaisPorData(alunoId, hoje) { materiais ->
-            callback(materiais)
-        }
-    }
+
 }

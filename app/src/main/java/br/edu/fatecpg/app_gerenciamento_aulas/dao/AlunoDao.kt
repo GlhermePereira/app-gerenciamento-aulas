@@ -2,7 +2,6 @@ package br.edu.fatecpg.app_gerenciamento_aulas.dao
 
 import br.edu.fatecpg.app_gerenciamento_aulas.model.Horario
 import br.edu.fatecpg.app_gerenciamento_aulas.model.Agendamento
-import br.edu.fatecpg.app_gerenciamento_aulas.model.Material
 import com.google.firebase.firestore.FirebaseFirestore
 import java.time.LocalDate
 import java.time.ZoneId
@@ -68,16 +67,5 @@ object AlunoDao {
             .addOnFailureListener { callback(emptyList()) }
     }
 
-    fun buscarMateriaisPorData(alunoId: String, data: LocalDate, callback: (List<Material>) -> Unit) {
-        db.collection("materiais")
-            .whereEqualTo("alunoId", alunoId)
-            .whereEqualTo("dataAula", data.toString())
-            .get()
-            .addOnSuccessListener { result ->
-                val materiais = result.mapNotNull { it.toObject(Material::class.java) }
-                callback(materiais)
-            }
-            .addOnFailureListener { callback(emptyList()) }
-    }
 
 }

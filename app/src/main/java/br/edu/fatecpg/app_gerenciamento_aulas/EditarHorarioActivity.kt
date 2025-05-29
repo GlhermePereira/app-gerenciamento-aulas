@@ -5,6 +5,7 @@ import android.app.TimePickerDialog
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import br.edu.fatecpg.app_gerenciamento_aulas.R
@@ -20,7 +21,11 @@ class EditarHorarioActivity : AppCompatActivity() {
     private lateinit var etDisciplina: EditText
     private lateinit var btnSalvar: Button
 
-    private var horario: Horario = Horario() // usa o construtor vazio
+    private lateinit var linksContainer: LinearLayout
+    private lateinit var btnAdicionarLink: Button
+
+    private var horario: Horario = Horario() // objeto vazio para depois popular
+    private val editTextLinks = mutableListOf<EditText>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,17 +35,29 @@ class EditarHorarioActivity : AppCompatActivity() {
         etHora = findViewById(R.id.etHora)
         etDisciplina = findViewById(R.id.etDisciplina)
         btnSalvar = findViewById(R.id.btnSalvar)
-        val horarioId = intent.getStringExtra("horario_id")
 
+        linksContainer = findViewById(R.id.linksContainer)
+        btnAdicionarLink = findViewById(R.id.btnAdicionarLink)
+
+        val horarioId = intent.getStringExtra("horario_id")
+        if (horarioId == null) {
+            Toast.makeText(this, "ID do horário não fornecido", Toast.LENGTH_SHORT).show()
+            finish()
+            return
+        }
+
+        // Popula campos se vierem pela intent
         intent.getSerializableExtra("horario")?.let {
             horario = it as Horario
             etData.setText(horario.data)
             etHora.setText(horario.hora)
             etDisciplina.setText(horario.disciplina)
+            carregarLinksDinamicos(horario.materiais)
         }
 
+        // Atualiza do Firestore para garantir dados atualizados
         val db = FirebaseFirestore.getInstance()
-        db.collection("horarios").document(horarioId!!)
+        db.collection("horarios").document(horarioId)
             .get()
             .addOnSuccessListener { document ->
                 if (document.exists()) {
@@ -50,11 +67,13 @@ class EditarHorarioActivity : AppCompatActivity() {
                         hora = document.getString("hora") ?: "",
                         disciplina = document.getString("disciplina") ?: "",
                         professorId = document.getString("professorId") ?: "",
-                        professorNome = document.getString("professorNome") ?: ""
+                        professorNome = document.getString("professorNome") ?: "",
+                        materiais = document.get("materiais") as? List<String> ?: emptyList()
                     )
                     etData.setText(horario.data)
                     etHora.setText(horario.hora)
                     etDisciplina.setText(horario.disciplina)
+                    carregarLinksDinamicos(horario.materiais)
                 } else {
                     Toast.makeText(this, "Horário não encontrado", Toast.LENGTH_SHORT).show()
                     finish()
@@ -65,13 +84,12 @@ class EditarHorarioActivity : AppCompatActivity() {
                 finish()
             }
 
-
         val calendar = Calendar.getInstance()
         etData.setOnClickListener {
             DatePickerDialog(
                 this,
-                { _, year, month, day ->
-                    etData.setText(String.format("%04d-%02d-%02d", year, month + 1, day))
+                { _, year, month, dayOfMonth ->
+                    etData.setText(String.format("%04d-%02d-%02d", year, month + 1, dayOfMonth))
                 },
                 calendar.get(Calendar.YEAR),
                 calendar.get(Calendar.MONTH),
@@ -82,13 +100,17 @@ class EditarHorarioActivity : AppCompatActivity() {
         etHora.setOnClickListener {
             TimePickerDialog(
                 this,
-                { _, hour, minute ->
-                    etHora.setText(String.format("%02d:%02d", hour, minute))
+                { _, hourOfDay, minute ->
+                    etHora.setText(String.format("%02d:%02d", hourOfDay, minute))
                 },
                 calendar.get(Calendar.HOUR_OF_DAY),
                 calendar.get(Calendar.MINUTE),
                 true
             ).show()
+        }
+
+        btnAdicionarLink.setOnClickListener {
+            adicionarEditTextLink("")
         }
 
         btnSalvar.setOnClickListener {
@@ -101,10 +123,13 @@ class EditarHorarioActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
+            val linksAtualizados = editTextLinks.map { it.text.toString().trim() }.filter { it.isNotEmpty() }
+
             val horarioAtualizado = horario.copy(
                 data = novaData,
                 hora = novaHora,
-                disciplina = novaDisciplina
+                disciplina = novaDisciplina,
+                materiais = linksAtualizados
             )
 
             HorarioController.atualizarHorario(horarioAtualizado) { sucesso, msg ->
@@ -118,5 +143,30 @@ class EditarHorarioActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun carregarLinksDinamicos(links: List<String>) {
+        linksContainer.removeAllViews()
+        editTextLinks.clear()
+        for (link in links) {
+            adicionarEditTextLink(link)
+        }
+        if (links.isEmpty()) {
+            adicionarEditTextLink("") // pelo menos um campo vazio
+        }
+    }
+
+    private fun adicionarEditTextLink(texto: String) {
+        val et = EditText(this)
+        et.layoutParams = LinearLayout.LayoutParams(
+            LinearLayout.LayoutParams.MATCH_PARENT,
+            LinearLayout.LayoutParams.WRAP_CONTENT
+        ).apply {
+            setMargins(0, 8, 0, 8)
+        }
+        et.hint = "Link do material"
+        et.setText(texto)
+        linksContainer.addView(et)
+        editTextLinks.add(et)
     }
 }

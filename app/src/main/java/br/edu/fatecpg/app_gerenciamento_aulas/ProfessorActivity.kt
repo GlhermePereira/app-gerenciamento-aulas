@@ -38,17 +38,10 @@ class ProfessorActivity : AppCompatActivity() {
         }
 
         // Vincula botões
-        btnGerenciarHorarios  = findViewById<Button>(R.id.btnGerenciarHorarios)
         btnVerAgendamentos    = findViewById<Button>(R.id.btnVerAgendamentos)
         btnSair               = findViewById<Button>(R.id.btnSairProfessor)
 
-        // Ao clicar em Gerenciar Horários → abre tela de criação/edição
-        btnGerenciarHorarios.setOnClickListener {
-            val intent = Intent(this, CriarHorarioActivity::class.java)
-            intent.putExtra("professorId", professorId)
-            startActivity(intent)
 
-        }
         btnVerAgendamentos.setOnClickListener{
             val professorId = intent.getStringExtra("professorId") ?: ""
             val intent = Intent(this, ListarHorariosActivity::class.java)

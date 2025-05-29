@@ -7,12 +7,13 @@ import com.google.firebase.firestore.FirebaseFirestore
 object HorarioController {
 
     fun criarHorarioDisponivel(
-        data: String,
-        hora: String,
-        disciplina: String,
-        professorId: String,
-        professorNome: String,
-        callback: (Boolean, String) -> Unit
+    data: String,
+    hora: String,
+    disciplina: String,
+    professorId: String,
+    professorNome: String,
+    materiais: List<String>, // Novo parâmetro
+    callback: (Boolean, String) -> Unit
     ) {
         val horario = Horario(
             id = "", // Será preenchido pelo DAO
@@ -21,7 +22,8 @@ object HorarioController {
             disciplina = disciplina,
             professorId = professorId,
             professorNome = professorNome,
-            disponivel = true
+            disponivel = true,
+            materiais = materiais  // Setar os materiais aqui
         )
         HorarioDao.adicionar(horario) { sucesso ->
             if (sucesso) callback(true, "")
@@ -37,11 +39,12 @@ object HorarioController {
             .update(
                 mapOf(
                     "data" to horario.data,
-                    "disciplina" to horario.disciplina,
-                    "disponivel" to horario.disponivel,
                     "hora" to horario.hora,
-                    "professorNome" to horario.professorNome
-
+                    "disciplina" to horario.disciplina,
+                    "professorId" to horario.professorId,
+                    "professorNome" to horario.professorNome,
+                    "disponivel" to horario.disponivel,
+                    "materiais" to horario.materiais  // Atualizando materiais também
                 )
             )
             .addOnSuccessListener {
@@ -50,6 +53,12 @@ object HorarioController {
             .addOnFailureListener {
                 callback(false, "Erro ao atualizar: ${it.message}")
             }
+    }
+
+
+    fun adicionarMateriaisAoHorario(horario: Horario, materiais: List<String>, onComplete: (Boolean) -> Unit) {
+        val horarioAtualizado = horario.copy(materiais = materiais)
+        HorarioDao.atualizar(horarioAtualizado, onComplete)
     }
 
 }

@@ -1,74 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
-    tools:context=".view.EditarHorarioActivity"
-    tools:layout_editor_absoluteX="10dp"
-    tools:layout_editor_absoluteY="144dp">
+    android:padding="16dp">
 
-    <EditText
-        android:id="@+id/etData"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="112dp"
-        android:backgroundTint="@color/black"
-        android:hint="Data (ex: 2025-05-22)"
-        android:inputType="date"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <LinearLayout
+        android:id="@+id/container"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/etHora"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:backgroundTint="@color/black"
-        android:hint="Hora (ex: 14:00)"
-        android:inputType="time"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/etData" />
+        <!-- Texto fixo "Criar Horario" -->
+        <TextView
+            android:id="@+id/textTitulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Criar Horario"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:paddingBottom="16dp" />
 
-    <EditText
-        android:id="@+id/etDisciplina"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
-        android:backgroundTint="@color/black"
-        android:hint="Disciplina"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/etHora" />
+        <!-- Campos do horário -->
+        <EditText
+            android:id="@+id/etData"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:backgroundTint="@color/black"
+            android:hint="Data (ex: 2025-05-22)"
+            android:inputType="date"
+            android:padding="12dp" />
 
-    <Button
-        android:id="@+id/btnSalvar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="Salvar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/etDisciplina" />
+        <EditText
+            android:id="@+id/etHora"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="@color/black"
+            android:hint="Hora (ex: 14:00)"
+            android:inputType="time"
+            android:padding="12dp" />
 
-    <EditText
-        android:id="@+id/editTextText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="text"
-        android:text="Criar Horario"
-        tools:layout_editor_absoluteX="94dp"
-        tools:layout_editor_absoluteY="19dp" />
+        <EditText
+            android:id="@+id/etDisciplina"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="@color/black"
+            android:hint="Disciplina"
+            android:padding="12dp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <!-- Container onde os links serão adicionados -->
+        <LinearLayout
+            android:id="@+id/linearLayoutLinks"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:padding="8dp" />
+
+        <!-- Botão adicionar link -->
+        <Button
+            android:id="@+id/btnAdicionarLink"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Adicionar link"
+            android:layout_marginTop="16dp" />
+
+        <!-- Botão salvar geral -->
+        <Button
+            android:id="@+id/btnSalvar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Salvar"
+            android:layout_marginTop="24dp" />
+
+    </LinearLayout>
+</ScrollView>

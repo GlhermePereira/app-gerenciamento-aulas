@@ -2,7 +2,6 @@ package br.edu.fatecpg.app_gerenciamento_aulas.controller
 
 import br.edu.fatecpg.app_gerenciamento_aulas.dao.AlunoDao
 import br.edu.fatecpg.app_gerenciamento_aulas.model.Horario
-import br.edu.fatecpg.app_gerenciamento_aulas.model.Material
 import br.edu.fatecpg.app_gerenciamento_aulas.model.Agendamento
 import java.time.LocalDate
 
@@ -20,7 +19,5 @@ object AlunoController {
         AlunoDao.buscarAulasAgendadas(alunoId, callback)
     }
 
-    fun listarMateriaisHoje(alunoId: String, data: LocalDate, callback: (List<Material>) -> Unit) {
-        AlunoDao.buscarMateriaisPorData(alunoId, data, callback)
-    }
+
 }

@@ -5,7 +5,6 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import br.edu.fatecpg.app_gerenciamento_aulas.controller.AgendamentoController
 import br.edu.fatecpg.app_gerenciamento_aulas.controller.HorarioController
-import br.edu.fatecpg.app_gerenciamento_aulas.controller.MaterialController
 import br.edu.fatecpg.app_gerenciamento_aulas.model.Horario
 import com.google.firebase.auth.FirebaseAuth
 import java.text.SimpleDateFormat

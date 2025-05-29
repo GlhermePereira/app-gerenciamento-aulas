@@ -1,7 +1,6 @@
 package br.edu.fatecpg.app_gerenciamento_aulas.dao
 
 import br.edu.fatecpg.app_gerenciamento_aulas.model.Horario
-import br.edu.fatecpg.app_gerenciamento_aulas.model.Material
 import com.google.firebase.firestore.FirebaseFirestore
 
 object ProfessorDao {
@@ -31,11 +30,5 @@ object ProfessorDao {
             }
     }
 
-    // Envia material vinculado a uma aula
-    fun enviarMaterial(material: Material, callback: (Boolean) -> Unit) {
-        db.collection("materiais")
-            .add(material)
-            .addOnSuccessListener { callback(true) }
-            .addOnFailureListener { callback(false) }
-    }
+
 }

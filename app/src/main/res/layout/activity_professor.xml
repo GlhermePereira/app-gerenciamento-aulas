@@ -23,12 +23,6 @@
             android:layout_marginBottom="16dp" />
 
         <Button
-            android:id="@+id/btnGerenciarHorarios"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Gerenciar Horários" />
-
-        <Button
             android:id="@+id/btnVerAgendamentos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

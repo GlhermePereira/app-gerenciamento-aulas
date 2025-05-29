@@ -66,4 +66,16 @@ object HorarioDao {
             .addOnSuccessListener { onComplete(true) }
             .addOnFailureListener { onComplete(false) }
     }
+
+    fun buscarPorId(horarioId: String, onComplete: (Horario?) -> Unit) {
+        kolle.document(horarioId).get()
+            .addOnSuccessListener { doc ->
+                val horario = doc.toObject(Horario::class.java)
+                onComplete(horario)
+            }
+            .addOnFailureListener {
+                onComplete(null)
+            }
+    }
+
 }

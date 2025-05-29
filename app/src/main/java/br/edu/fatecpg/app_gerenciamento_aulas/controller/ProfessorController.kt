@@ -2,10 +2,8 @@ package br.edu.fatecpg.app_gerenciamento_aulas.controller
 
 import br.edu.fatecpg.app_gerenciamento_aulas.dao.AulaDao
 import br.edu.fatecpg.app_gerenciamento_aulas.dao.HorarioDao
-import br.edu.fatecpg.app_gerenciamento_aulas.dao.MaterialDao
 import br.edu.fatecpg.app_gerenciamento_aulas.model.Aula
 import br.edu.fatecpg.app_gerenciamento_aulas.model.Horario
-import br.edu.fatecpg.app_gerenciamento_aulas.model.Material
 
 object ProfessorController {
     fun adicionarHorario(
@@ -37,12 +35,4 @@ object ProfessorController {
         AulaDao.listarPorProfessor(professorId, onResult)
     }
 
-    fun enviarMaterial(agendamentoId: String, titulo: String, link: String, onComplete: (Boolean) -> Unit) {
-        val material = Material(
-            agendamentoId = agendamentoId,
-            titulo = titulo,
-            link = link
-        )
-        MaterialDao.enviar(material, onComplete)
-    }
 }

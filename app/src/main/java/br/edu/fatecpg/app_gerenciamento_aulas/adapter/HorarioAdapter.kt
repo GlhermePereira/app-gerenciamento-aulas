@@ -60,6 +60,12 @@ class HorarioAdapter(
             onAdicionarMaterial(horario)
         }
     }
+    fun atualizarLista(novosHorarios: List<Horario>) {
+        horarios.clear()
+        horarios.addAll(novosHorarios)
+        notifyDataSetChanged()
+    }
+
 
     override fun getItemCount(): Int = horarios.size
 }

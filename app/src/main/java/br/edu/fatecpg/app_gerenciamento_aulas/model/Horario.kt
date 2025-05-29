@@ -9,5 +9,7 @@ data class Horario(
     val disciplina: String = "",
     val professorId: String = "",
     val professorNome: String = "",
-    val disponivel: Boolean = true
+    val disponivel: Boolean = true,
+    val materiais: List<String> = emptyList() //
+
 ) : Serializable
