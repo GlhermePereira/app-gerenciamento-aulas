@@ -44,4 +44,19 @@
     <string name="aluno">Aluno</string>
     <string name="alunoOp">Aluno</string>
     <string name="professorOp">Professor</string>
+    <string name="logo_professor">Logo Professor</string>
+    <string name="data_ex_2025_05_22">Data (ex: 2025-05-22)</string>
+    <string name="hora_ex_14_00">Hora (ex: 14:00)</string>
+    <string name="disciplina">Disciplina</string>
+    <string name="adicionar_link">Adicionar Link</string>
+    <string name="salvar">Salvar</string>
+    <string name="logo_do_professor">Logo do Professor</string>
+    <string name="cone_de_agendamentos">Ícone de agendamentos</string>
+    <string name="ver_agendamentos">Ver Agendamentos</string>
+    <string name="visualize_seus_compromissos">Visualize seus compromissos</string>
+    <string name="cone_de_hor_rios">Ícone de horários</string>
+    <string name="gerenciar_hor_rios">Gerenciar Horários</string>
+    <string name="configure_sua_disponibilidade">Configure sua disponibilidade</string>
+    <string name="sair">Sair</string>
+    <string name="salvar_altera_es">Salvar alterações</string>
 </resources>

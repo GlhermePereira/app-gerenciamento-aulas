@@ -1,80 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/scrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:background="#6A1B9A"
+    android:padding="24dp">
 
     <LinearLayout
         android:id="@+id/container"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
 
-        <!-- Texto fixo "Criar Horario" -->
-        <TextView
-            android:id="@+id/textTitulo"
+        <!-- Logo do Professor -->
+        <ImageView
+            android:id="@+id/professorLogo"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Criar Horario"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:layout_gravity="center"
-            android:paddingBottom="16dp" />
+            android:layout_height="160dp"
+            android:layout_marginBottom="50dp"
+            android:contentDescription="@string/logo_professor"
+            android:src="@drawable/professor_hat" />
 
-        <!-- Campos do horário -->
-        <EditText
-            android:id="@+id/etData"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:backgroundTint="@color/black"
-            android:hint="Data (ex: 2025-05-22)"
-            android:inputType="date"
-            android:padding="12dp" />
-
-        <EditText
-            android:id="@+id/etHora"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginTop="16dp"
-            android:backgroundTint="@color/black"
-            android:hint="Hora (ex: 14:00)"
-            android:inputType="time"
-            android:padding="12dp" />
-
-        <EditText
-            android:id="@+id/etDisciplina"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginTop="16dp"
-            android:backgroundTint="@color/black"
-            android:hint="Disciplina"
-            android:padding="12dp" />
-
-        <!-- Container onde os links serão adicionados -->
+        <!-- Card Container -->
         <LinearLayout
-            android:id="@+id/linearLayoutLinks"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_form"
             android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:padding="8dp" />
+            android:padding="40dp">
 
-        <!-- Botão adicionar link -->
-        <Button
-            android:id="@+id/btnAdicionarLink"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Adicionar link"
-            android:layout_marginTop="16dp" />
+            <!-- Campos do horário -->
+            <EditText
+                android:id="@+id/etData"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginBottom="16dp"
+                android:autofillHints=""
+                android:backgroundTint="@color/white"
+                android:hint="@string/data_ex_2025_05_22"
+                android:inputType="date"
+                android:padding="12dp"
+                android:textColor="#000000"
+                android:textColorHint="#AAAAAA" />
 
-        <!-- Botão salvar geral -->
-        <Button
-            android:id="@+id/btnSalvar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Salvar"
-            android:layout_marginTop="24dp" />
+            <EditText
+                android:id="@+id/etHora"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginBottom="16dp"
+                android:autofillHints=""
+                android:backgroundTint="@color/white"
+                android:hint="@string/hora_ex_14_00"
+                android:inputType="time"
+                android:padding="12dp"
+                android:textColor="#000000"
+                android:textColorHint="#AAAAAA" />
+
+            <EditText
+                android:id="@+id/etDisciplina"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginBottom="24dp"
+                android:autofillHints=""
+                android:backgroundTint="@color/white"
+                android:hint="@string/disciplina"
+                android:inputType="text"
+                android:padding="12dp"
+                android:textColor="#000000"
+                android:textColorHint="#AAAAAA" />
+
+            <!-- Container onde os links serão adicionados -->
+            <LinearLayout
+                android:id="@+id/linearLayoutLinks"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:orientation="vertical" />
+
+            <!-- Botão adicionar link -->
+            <Button
+                android:id="@+id/btnAdicionarLink"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/rounded_edittextyellow"
+                android:elevation="2dp"
+                android:text="@string/adicionar_link"
+                android:textColor="@color/black" />
+
+            <!-- Botão salvar geral -->
+            <Button
+                android:id="@+id/btnSalvar"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/rounded_edittextyellow"
+                android:elevation="2dp"
+                android:text="@string/salvar"
+                android:textColor="@color/black" />
+
+        </LinearLayout>
 
     </LinearLayout>
 </ScrollView>
