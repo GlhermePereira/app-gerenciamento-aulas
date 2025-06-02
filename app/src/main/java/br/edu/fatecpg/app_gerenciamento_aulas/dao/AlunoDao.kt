@@ -34,9 +34,9 @@ object AlunoDao {
         val novoAgendamento = Agendamento(
             alunoId = alunoId,
             professorId = horario.professorId,
-            dataHora = dataHoraCompleta,
+            hora = dataHoraCompleta,
             horarioId = horario.id,
-            dataAula = dataAula
+            data = dataAula
         )
 
         val db = FirebaseFirestore.getInstance()

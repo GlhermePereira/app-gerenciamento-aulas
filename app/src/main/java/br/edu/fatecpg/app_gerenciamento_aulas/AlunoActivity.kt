@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import br.edu.fatecpg.app_gerenciamento_aulas.Login
 import br.edu.fatecpg.app_gerenciamento_aulas.MateriaisActivity
@@ -31,13 +32,16 @@ class AlunoActivity : AppCompatActivity() {
         btnMinhasAulas = findViewById(R.id.btnMinhasAulas)
         btnMateriais = findViewById(R.id.btnMateriais)
         btnSair = findViewById(R.id.btnSair)
+        var alunoId = ""
+
+
 
         val user = FirebaseAuth.getInstance().currentUser
         user?.let {
             val db = FirebaseFirestore.getInstance()
-            val uid = it.uid
+            var alunoId = it.uid
 
-            db.collection("usuarios").document(uid).get()
+            db.collection("usuarios").document(alunoId).get()
                 .addOnSuccessListener { document ->
                     if (document != null && document.exists()) {
                         val nome = document.getString("nome") ?: "Aluno"
@@ -46,25 +50,29 @@ class AlunoActivity : AppCompatActivity() {
                         tvBoasVindas.text = "Olá, Aluno!"
                     }
                 }
-                .addOnFailureListener { e ->
+                .addOnFailureListener {
                     tvBoasVindas.text = "Olá, Aluno!"
-                    Log.e("Firestore", "Erro ao buscar nome do usuário", e)
                 }
         }
+        btnVerHorarios.setOnClickListener{
+            val intent = Intent(this, ListarAgendamentos::class.java)
+            intent.putExtra("alunoId", alunoId)
+            startActivity(intent)
 
-
-
-        btnVerHorarios.setOnClickListener {
-            startActivity(Intent(this, ListarAgendamentos::class.java))
         }
 
         btnMinhasAulas.setOnClickListener {
-            startActivity(Intent(this, MinhasAulasActivity::class.java))
+            val intent = Intent(this, MinhasAulasActivity::class.java)
+            intent.putExtra("alunoId", alunoId)
+            startActivity(intent)
         }
 
         btnMateriais.setOnClickListener {
-            startActivity(Intent(this, MateriaisActivity::class.java))
+            val intent = Intent(this, MateriaisActivity::class.java)
+            intent.putExtra("alunoId", alunoId)
+            startActivity(intent)
         }
+
 
         btnSair.setOnClickListener {
             FirebaseAuth.getInstance().signOut()

@@ -3,16 +3,16 @@ package br.edu.fatecpg.app_gerenciamento_aulas.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import br.edu.fatecpg.app_gerenciamento_aulas.R
-import br.edu.fatecpg.app_gerenciamento_aulas.model.Agendamento
+import br.edu.fatecpg.app_gerenciamento_aulas.model.Horario
 
-private class AgendamentoAdapter(
-    private val items: List<Agendamento>,
-    private val onAddMaterial: (Agendamento) -> Unit,
-    private val onMoreOptions: (Agendamento, View) -> Unit
+class AgendamentoAdapter(
+    private val horariosDisponiveis: List<Horario>,
+    private val onAgendar: (Horario) -> Unit
 ) : RecyclerView.Adapter<AgendamentoAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -21,18 +21,18 @@ private class AgendamentoAdapter(
         return ViewHolder(view)
     }
 
-    override fun getItemCount() = items.size
+    override fun getItemCount(): Int = horariosDisponiveis.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val ag = items[position]
-        holder.tvInfo.text = "${ag.dataAula} ${ag.dataHora} - ${ag.professorId}"
-        holder.btnAdd.setOnClickListener { onAddMaterial(ag) }
-        holder.btnMore.setOnClickListener { onMoreOptions(ag, holder.btnMore) }
+        val horario = horariosDisponiveis[position]
+        holder.tvDataHora.text = "${horario.data} - ${horario.hora}"
+        holder.tvDisciplina.text = horario.disciplina
+        holder.btnAgendar.setOnClickListener { onAgendar(horario) }
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val tvInfo: TextView = view.findViewById(R.id.tvDataHoraDisciplina)
-        val btnAdd: ImageButton = view.findViewById(R.id.btnAddMaterial)
-        val btnMore: ImageButton = view.findViewById(R.id.btnEditarExcluir)
+        val tvDataHora: TextView = view.findViewById(R.id.tvDataHora)
+        val tvDisciplina: TextView = view.findViewById(R.id.tvDisciplina)
+        val btnAgendar: ImageButton = view.findViewById(R.id.btnAgendar)
     }
 }

@@ -67,7 +67,7 @@ class ListarHorariosActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        HorarioDao.listarHorarios(professorId) { lista ->
+        HorarioDao.listarHorariosProfessor(professorId) { lista ->
             runOnUiThread {
                 horarios.clear()
                 horarios.addAll(lista)

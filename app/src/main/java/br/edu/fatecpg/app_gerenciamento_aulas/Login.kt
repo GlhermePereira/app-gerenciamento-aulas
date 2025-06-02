@@ -50,6 +50,8 @@ class Login : AppCompatActivity() {
                         when (tipoUsuario) {
                             "aluno" -> {
                                 startActivity(Intent(this, AlunoActivity::class.java))
+                                intent.putExtra("alunoId", uid)
+                                startActivity(intent)
                                 finish()
                             }
                             "professor" -> {

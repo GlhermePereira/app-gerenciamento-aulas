@@ -39,13 +39,13 @@
         android:gravity="end|center_vertical">
 
         <ImageButton
-            android:id="@+id/btnAgendar"
+            android:id="@+id/btnExcluir"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:background="?android:selectableItemBackgroundBorderless"
-            android:contentDescription="Adicionar Material"
-            android:src="@android:drawable/ic_input_add"
+            android:contentDescription="Excluir"
+            android:src="@android:drawable/ic_menu_delete"
             tools:ignore="TouchTargetSizeCheck" />
 
     </LinearLayout>
