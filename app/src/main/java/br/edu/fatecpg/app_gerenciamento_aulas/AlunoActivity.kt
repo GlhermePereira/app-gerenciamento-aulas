@@ -1,51 +1,75 @@
-package br.edu.fatecpg.app_gerenciamento_aulas
+package br.edu.fatecpg.app_gerenciamento_aulas.view
 
+import android.content.Intent
 import android.os.Bundle
-import android.widget.*
+import android.util.Log
+import android.widget.Button
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import br.edu.fatecpg.app_gerenciamento_aulas.controller.AgendamentoController
-import br.edu.fatecpg.app_gerenciamento_aulas.controller.HorarioController
-import br.edu.fatecpg.app_gerenciamento_aulas.model.Horario
+import br.edu.fatecpg.app_gerenciamento_aulas.Login
+import br.edu.fatecpg.app_gerenciamento_aulas.MateriaisActivity
+import br.edu.fatecpg.app_gerenciamento_aulas.MinhasAulasActivity
+import br.edu.fatecpg.app_gerenciamento_aulas.R
+import br.edu.fatecpg.app_gerenciamento_aulas.ListarAgendamentos
 import com.google.firebase.auth.FirebaseAuth
-import java.text.SimpleDateFormat
-import java.util.*
+import com.google.firebase.firestore.FirebaseFirestore
 
 class AlunoActivity : AppCompatActivity() {
 
-    private lateinit var btnAgendar: Button
-    private lateinit var horariosListView: ListView
-    private lateinit var aulasListView: ListView
-    private lateinit var materiaisListView: ListView
-
-    private var horarioSelecionado: Horario? = null
-    private lateinit var alunoId: String
-    private val horariosList = mutableListOf<Horario>()
+    private lateinit var btnVerHorarios: Button
+    private lateinit var btnMinhasAulas: Button
+    private lateinit var btnMateriais: Button
+    private lateinit var btnSair: Button
+    private lateinit var tvBoasVindas: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_aluno)
 
+        tvBoasVindas = findViewById(R.id.tvBoasVindas)
+        btnVerHorarios = findViewById(R.id.btnVerAgendamentos)
+        btnMinhasAulas = findViewById(R.id.btnMinhasAulas)
+        btnMateriais = findViewById(R.id.btnMateriais)
+        btnSair = findViewById(R.id.btnSair)
+
         val user = FirebaseAuth.getInstance().currentUser
-        if (user == null) {
-            Toast.makeText(this, "Usuário não autenticado!", Toast.LENGTH_LONG).show()
+        user?.let {
+            val db = FirebaseFirestore.getInstance()
+            val uid = it.uid
+
+            db.collection("usuarios").document(uid).get()
+                .addOnSuccessListener { document ->
+                    if (document != null && document.exists()) {
+                        val nome = document.getString("nome") ?: "Aluno"
+                        tvBoasVindas.text = "Olá, $nome!"
+                    } else {
+                        tvBoasVindas.text = "Olá, Aluno!"
+                    }
+                }
+                .addOnFailureListener { e ->
+                    tvBoasVindas.text = "Olá, Aluno!"
+                    Log.e("Firestore", "Erro ao buscar nome do usuário", e)
+                }
+        }
+
+
+
+        btnVerHorarios.setOnClickListener {
+            startActivity(Intent(this, ListarAgendamentos::class.java))
+        }
+
+        btnMinhasAulas.setOnClickListener {
+            startActivity(Intent(this, MinhasAulasActivity::class.java))
+        }
+
+        btnMateriais.setOnClickListener {
+            startActivity(Intent(this, MateriaisActivity::class.java))
+        }
+
+        btnSair.setOnClickListener {
+            FirebaseAuth.getInstance().signOut()
+            startActivity(Intent(this, Login::class.java))
             finish()
-            return
         }
-        alunoId = user.uid
-
-        // Inicializar Views
-        btnAgendar = findViewById(R.id.btnAgendar)
-        horariosListView = findViewById(R.id.horariosListView)
-        aulasListView = findViewById(R.id.aulasListView)
-        materiaisListView = findViewById(R.id.materiaisListView)
-
-        // Selecionar horário
-        horariosListView.setOnItemClickListener { _, _, position, _ ->
-            if (position >= 0 && position < horariosList.size) {
-                horarioSelecionado = horariosList[position]
-            }
-        }
-
-
     }
 }

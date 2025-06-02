@@ -3,20 +3,20 @@ package br.edu.fatecpg.app_gerenciamento_aulas
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import br.edu.fatecpg.app_gerenciamento_aulas.controller.ProfessorController
+import androidx.cardview.widget.CardView
+
+import br.edu.fatecpg.app_gerenciamento_aulas.R.id.btnSairProfessor
+import br.edu.fatecpg.app_gerenciamento_aulas.R.id.cdListarAgendamentos
 import com.google.firebase.auth.FirebaseAuth
 
 
 class ProfessorActivity : AppCompatActivity() {
 
-    private lateinit var btnGerenciarHorarios: Button
-    private lateinit var btnAdicionarMaterial: Button
-    private lateinit var btnVerAgendamentos: Button
+
+    private lateinit var cvGerenciarHorarios: CardView
     private lateinit var btnSair: Button
 
     private lateinit var professorId: String
@@ -38,11 +38,11 @@ class ProfessorActivity : AppCompatActivity() {
         }
 
         // Vincula botões
-        btnVerAgendamentos    = findViewById<Button>(R.id.btnVerAgendamentos)
-        btnSair               = findViewById<Button>(R.id.btnSairProfessor)
+        cvGerenciarHorarios    = findViewById<CardView>(cdListarAgendamentos)
+        btnSair               = findViewById<Button>(btnSairProfessor)
 
 
-        btnVerAgendamentos.setOnClickListener{
+        cvGerenciarHorarios.setOnClickListener{
             val professorId = intent.getStringExtra("professorId") ?: ""
             val intent = Intent(this, ListarHorariosActivity::class.java)
             intent.putExtra("professorId", professorId)

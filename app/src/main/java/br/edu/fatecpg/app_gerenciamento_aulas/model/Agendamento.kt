@@ -1,7 +1,5 @@
 package br.edu.fatecpg.app_gerenciamento_aulas.model
 
-import com.google.firebase.Timestamp
-
 data class Agendamento(
     var id: String? = null,            // id do agendamento (opcional, atribuído pelo Firestore)
     val alunoId: String = "",          // id do aluno que agendou

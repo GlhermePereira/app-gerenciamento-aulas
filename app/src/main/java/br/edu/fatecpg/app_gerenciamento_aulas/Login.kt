@@ -8,6 +8,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import br.edu.fatecpg.app_gerenciamento_aulas.controller.UserController
+import br.edu.fatecpg.app_gerenciamento_aulas.view.AlunoActivity
 
 class Login : AppCompatActivity() {
 

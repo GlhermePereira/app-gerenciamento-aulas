@@ -101,7 +101,7 @@
         app:layout_constraintVertical_bias="0.4">
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/btnVerAgendamentos"
+            android:id="@+id/cdListarAgendamentos"
             android:layout_width="280dp"
             android:layout_height="200dp"
             android:stateListAnimator="@animator/card_hover"
@@ -129,6 +129,8 @@
                     android:layout_marginBottom="16dp"/>
 
                 <TextView
+                    android:clickable="true"
+                    android:focusable="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/ver_agendamentos"
@@ -150,7 +152,6 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/btnGerenciarHorarios"
             android:layout_width="280dp"
             android:layout_height="200dp"
             android:stateListAnimator="@animator/card_hover"
