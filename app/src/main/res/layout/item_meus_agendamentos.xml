@@ -37,9 +37,19 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="end|center_vertical">
+        <ImageButton
+            android:id="@+id/btnInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:background="?android:selectableItemBackgroundBorderless"
+            android:contentDescription="Informações"
+            android:src="@android:drawable/ic_menu_info_details"
+            tools:ignore="TouchTargetSizeCheck" />
+
 
         <ImageButton
-            android:id="@+id/btnExcluir"
+            android:id="@+id/btnCancelar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"

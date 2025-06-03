@@ -5,23 +5,25 @@ import br.edu.fatecpg.app_gerenciamento_aulas.dao.UsuarioDao
 object UserController {
 
     private var usuarioIdAtual: String? = null
+    private var tipoUsuarioAtual: String? = null
 
-    /**
-     * Faz login e retorna resultado para a Activity
-     */
+
     fun logar(email: String, senha: String, callback: (Boolean, String?, String?, String?) -> Unit) {
         UsuarioDao.logar(email, senha) { sucesso, erro, tipoUsuario, uid ->
-            if (sucesso && uid != null) {
+            if (sucesso && uid != null && tipoUsuario != null) {
                 usuarioIdAtual = uid
+                tipoUsuarioAtual = tipoUsuario
             }
             callback(sucesso, erro, tipoUsuario, uid)
         }
     }
 
-    /**
-     * Retorna o ID do usuário atualmente logado
-     */
-    fun getUsuarioIdAtual(): String? {
-        return usuarioIdAtual
+    fun getUsuarioIdAtual(): String? = usuarioIdAtual
+
+    fun getTipoUsuarioAtual(): String? = tipoUsuarioAtual
+
+    fun logout() {
+        usuarioIdAtual = null
+        tipoUsuarioAtual = null
     }
 }

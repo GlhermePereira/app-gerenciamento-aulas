@@ -10,6 +10,7 @@ import androidx.cardview.widget.CardView
 
 import br.edu.fatecpg.app_gerenciamento_aulas.R.id.btnSairProfessor
 import br.edu.fatecpg.app_gerenciamento_aulas.R.id.cdListarAgendamentos
+import br.edu.fatecpg.app_gerenciamento_aulas.controller.UserController
 import com.google.firebase.auth.FirebaseAuth
 
 
@@ -19,23 +20,14 @@ class ProfessorActivity : AppCompatActivity() {
     private lateinit var cvGerenciarHorarios: CardView
     private lateinit var btnSair: Button
 
-    private lateinit var professorId: String
-    private lateinit var professorNome: String
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val professorId = intent.getIntExtra("professorId", -1)
 
         setContentView(R.layout.activity_professor)
 
-        // Pega dados do professor logado
-        FirebaseAuth.getInstance().currentUser?.let { user ->
-            professorNome = user.displayName ?: "Professor"
-        } ?: run {
-            Toast.makeText(this, "Usuário não autenticado", Toast.LENGTH_LONG).show()
-            finish()
-            return
-        }
+
 
         // Vincula botões
         cvGerenciarHorarios    = findViewById<CardView>(cdListarAgendamentos)
@@ -52,9 +44,11 @@ class ProfessorActivity : AppCompatActivity() {
 
         // Ao clicar em Sair → desloga e volta para Login
         btnSair.setOnClickListener {
-            FirebaseAuth.getInstance().signOut()
-            startActivity(Intent(this, Login::class.java))
-            finish()
+            UserController.logout()
+            val intent = Intent(this, Login::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+
         }
     }
 }

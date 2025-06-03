@@ -2,16 +2,15 @@ package br.edu.fatecpg.app_gerenciamento_aulas.view
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import br.edu.fatecpg.app_gerenciamento_aulas.Login
 import br.edu.fatecpg.app_gerenciamento_aulas.MateriaisActivity
 import br.edu.fatecpg.app_gerenciamento_aulas.MinhasAulasActivity
 import br.edu.fatecpg.app_gerenciamento_aulas.R
 import br.edu.fatecpg.app_gerenciamento_aulas.ListarAgendamentos
+import br.edu.fatecpg.app_gerenciamento_aulas.controller.UserController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -75,9 +74,10 @@ class AlunoActivity : AppCompatActivity() {
 
 
         btnSair.setOnClickListener {
-            FirebaseAuth.getInstance().signOut()
-            startActivity(Intent(this, Login::class.java))
-            finish()
+            UserController.logout()
+            val intent = Intent(this, Login::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
         }
     }
 }

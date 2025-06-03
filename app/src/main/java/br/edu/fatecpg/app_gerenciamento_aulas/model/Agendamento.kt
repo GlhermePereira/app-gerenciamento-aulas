@@ -6,5 +6,6 @@ data class Agendamento(
     val professorId: String = "",
     val hora: String = "", // formato tipo "2025-05-22 14:00"
     val horarioId: String = "",        // id do horário agendado
-    val data: String = ""          // data da aula em formato "YYYY-MM-DD"
+    val data: String = "",
+    val disciplina: String = "" 
 )

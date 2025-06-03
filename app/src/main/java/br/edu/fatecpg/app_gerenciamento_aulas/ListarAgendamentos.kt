@@ -34,9 +34,10 @@ class ListarAgendamentos : AppCompatActivity() {
             val agendamento = Agendamento(
                 alunoId = uid.toString(),
                 professorId = horario.professorId,
-                hora = "${horario.data} ${horario.hora}",
+                hora = horario.hora,
                 horarioId = horario.id,
-                data = horario.data
+                data = horario.data,
+                disciplina = horario.disciplina
             )
 
             // 1. Salvar agendamento

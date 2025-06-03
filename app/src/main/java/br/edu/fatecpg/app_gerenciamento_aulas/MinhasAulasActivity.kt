@@ -1,20 +1,49 @@
 package br.edu.fatecpg.app_gerenciamento_aulas
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
+import android.widget.Button
+import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import br.edu.fatecpg.app_gerenciamento_aulas.adapter.MinhasAulasAdapter
+import br.edu.fatecpg.app_gerenciamento_aulas.controller.UserController
+import br.edu.fatecpg.app_gerenciamento_aulas.dao.AgendamentoDao
+import br.edu.fatecpg.app_gerenciamento_aulas.model.Agendamento
 
 class MinhasAulasActivity : AppCompatActivity() {
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var adapter: MinhasAulasAdapter
+    private val meusAgendamentos = mutableListOf<Agendamento>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_minhas_aulas)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+
+        val uid = UserController.getUsuarioIdAtual()
+
+        recyclerView = findViewById(R.id.rvAgendamentos)
+        val btnVoltar = findViewById<Button>(R.id.btnVoltarAluno)
+        btnVoltar.setOnClickListener { finish() }
+
+        adapter = MinhasAulasAdapter(meusAgendamentos)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter = adapter
+
+        if (uid != null) {
+            carregarMeusAgendamentos(uid)
+        }
+
+
+    }
+
+    private fun carregarMeusAgendamentos(uid: String) {
+        AgendamentoDao.listarPorAluno(uid) { lista ->
+            runOnUiThread {
+                meusAgendamentos.clear()
+                meusAgendamentos.addAll(lista)
+                adapter.notifyDataSetChanged()
+            }
         }
     }
 }

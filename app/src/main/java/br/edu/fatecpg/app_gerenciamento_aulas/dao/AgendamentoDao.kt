@@ -46,4 +46,14 @@ object AgendamentoDao {
                 onComplete(null)
             }
     }
+
+    fun cancelarAgendamento(agendamentoId: String, callback: (Boolean) -> Unit) {
+        val db = FirebaseFirestore.getInstance()
+        db.collection("agendamentos")
+            .document(agendamentoId)
+            .delete()
+            .addOnSuccessListener { callback(true) }
+            .addOnFailureListener { callback(false) }
+    }
+
 }
