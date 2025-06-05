@@ -59,4 +59,11 @@
     <string name="configure_sua_disponibilidade">Configure sua disponibilidade</string>
     <string name="sair">Sair</string>
     <string name="salvar_altera_es">Salvar alterações</string>
+    <string name="meus_hor_rios">Meus Horarios</string>
+    <string name="adicionar">Adicionar</string>
+    <string name="voltar">Voltar</string>
+    <string name="data_hora">Data - Hora</string>
+    <string name="editar" />
+    <string name="excluir" />
+    <string name="adicionar_material" />
 </resources>

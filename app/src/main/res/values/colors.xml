@@ -9,5 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="btnBg">#FFD600</color>
     <color name="btnF">#7583CA</color>
-    <color name="formBg">#8F5AAF</color>"
+    <color name="formBg">#8F5AAF</color>
+    <color name="IconsBG">#B0A3B7</color>
+    <color name="ItemBG">#725285</color>
 </resources>
