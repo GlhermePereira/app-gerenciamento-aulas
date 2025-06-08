@@ -15,7 +15,7 @@
         android:layout_height="80dp"
         android:layout_marginBottom="20dp"
         android:contentDescription="@string/logo_professor"
-        android:src="@drawable/professor_hat" />
+        android:src="@drawable/professor_logo" />
 
     <!-- Card Container -->
     <LinearLayout

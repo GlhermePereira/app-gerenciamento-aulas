@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="horizontal"
-    android:padding="12dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:baselineAligned="false"
+    android:orientation="horizontal"
+    android:background="@drawable/rounded_edit_bg_item"
+    android:padding="20dp"
+    android:layout_margin="8dp"
+    android:elevation="3dp"
     android:gravity="center_vertical">
 
     <!-- Parte dos dados -->
     <LinearLayout
-        android:orientation="vertical"
-        android:layout_weight="1"
         android:layout_width="0dp"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/tvDisciplina"
@@ -20,7 +24,9 @@
             android:layout_height="wrap_content"
             android:text="Disciplina"
             android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:layout_marginBottom="4dp" />
 
         <TextView
             android:id="@+id/tvDataHora"
@@ -28,7 +34,8 @@
             android:layout_height="wrap_content"
             android:text="Data - Hora"
             android:textSize="14sp"
-            android:textColor="#666666" />
+            android:textColor="@color/white" />
+
     </LinearLayout>
 
     <!-- Parte dos ícones -->
@@ -37,26 +44,30 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="end|center_vertical">
+
         <ImageButton
             android:id="@+id/btnInfo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_marginEnd="8dp"
-            android:background="?android:selectableItemBackgroundBorderless"
+            android:background="@drawable/rounded_edit_bg_icons"
             android:contentDescription="Informações"
             android:src="@android:drawable/ic_menu_info_details"
-            tools:ignore="TouchTargetSizeCheck" />
-
+            android:scaleType="centerInside"
+            android:padding="8dp"
+            android:elevation="2dp" />
 
         <ImageButton
             android:id="@+id/btnCancelar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:background="?android:selectableItemBackgroundBorderless"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/rounded_edit_bg_icons"
             android:contentDescription="Excluir"
             android:src="@android:drawable/ic_menu_delete"
-            tools:ignore="TouchTargetSizeCheck" />
+            android:scaleType="centerInside"
+            android:padding="8dp"
+            android:elevation="2dp" />
 
     </LinearLayout>
+
 </LinearLayout>

@@ -1,46 +1,296 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/layoutAluno"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="24dp"
-    android:gravity="center"
-    android:background="#FAFAFA">
+    android:background="#6A1B9A"
+    android:padding="16dp">
 
+    <!-- Estrelas decorativas -->
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:contentDescription="@string/starpng"
+        android:src="@drawable/star"
+        android:alpha="0.7"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="40dp"/>
+
+    <ImageView
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:contentDescription="@string/starpng2"
+        android:src="@drawable/star"
+        android:alpha="0.5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="30dp"/>
+
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:contentDescription="@string/starpng3"
+        android:src="@drawable/star"
+        android:alpha="0.6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginStart="40dp"
+        android:layout_marginBottom="100dp"/>
+
+    <ImageView
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="60dp"
+        android:alpha="0.4"
+        android:contentDescription="@string/starpng4"
+        android:src="@drawable/star"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:contentDescription="@string/starpng5"
+        android:src="@drawable/star"
+        android:alpha="0.8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.3"
+        android:layout_marginStart="15dp"/>
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:contentDescription="@string/starpng6"
+        android:src="@drawable/star"
+        android:alpha="0.3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.7"
+        android:layout_marginEnd="20dp"/>
+
+    <!-- Texto de Boas Vindas -->
     <TextView
         android:id="@+id/tvBoasVindas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Olá, Aluno!"
+        android:text="@string/ola_aluno2"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:layout_marginBottom="32dp" />
+        android:textColor="@color/white"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="16dp" />
 
+    <!-- Logo do Aluno -->
+    <ImageView
+        android:id="@+id/tvAlunoTitulo"
+        android:layout_width="192dp"
+        android:layout_height="139dp"
+        android:layout_marginTop="52dp"
+        android:contentDescription="@string/logo_do_aluno"
+        android:elevation="4dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/student_logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Container dos Cards -->
+    <LinearLayout
+        android:id="@+id/containerCards"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        app:layout_constraintBottom_toTopOf="@id/btnSair"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvAlunoTitulo"
+        app:layout_constraintVertical_bias="0.3">
+
+        <!-- Card Ver Agendamentos -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/btnVerAgendamentos"
+            android:layout_width="280dp"
+            android:layout_height="120dp"
+            android:stateListAnimator="@animator/card_hover"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="6dp"
+            app:cardUseCompatPadding="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#6A1B9A"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="16dp">
+
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginEnd="16dp"
+                    android:contentDescription="@string/icone_agendamentos"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/calendar" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/agendamentos_dispon_veis"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Card Minhas Aulas -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/btnMinhasAulas"
+            android:layout_width="280dp"
+            android:layout_height="120dp"
+            android:stateListAnimator="@animator/card_hover"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="6dp"
+            app:cardUseCompatPadding="true"
+            tools:ignore="DuplicateIds">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#6A1B9A"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="16dp">
+
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginEnd="16dp"
+                    android:contentDescription="@string/icone_minhas_aulas"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/book2" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/minhas_aulas_aluno"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:paddingEnd="20dp"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Card Materiais -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/btnMateriais"
+            android:layout_width="280dp"
+            android:layout_height="120dp"
+            android:stateListAnimator="@animator/card_hover"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="6dp"
+            app:cardUseCompatPadding="true"
+            tools:ignore="DuplicateIds">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#6A1B9A"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="16dp">
+
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginEnd="16dp"
+                    android:contentDescription="@string/icone_materiais"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/book3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/materiais_de_estudo_student"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+    <!-- Botões INVISÍVEIS com IDs originais para manter compatibilidade -->
     <Button
         android:id="@+id/btnVerAgendamentos"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Ver Agendamentos disponíveis"
-        android:layout_marginBottom="16dp" />
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="@string/ver_agendamentos_dispon_veis"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="DuplicateIds" />
 
     <Button
         android:id="@+id/btnMinhasAulas"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Minhas aulas"
-        android:layout_marginBottom="16dp" />
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="@string/minhassaulas"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="DuplicateIds" />
 
     <Button
         android:id="@+id/btnMateriais"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Materiais de estudo"
-        android:layout_marginBottom="16dp" />
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="@string/materiais_de_estudo_alun"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="DuplicateIds" />
 
+    <!-- Botão Sair VISÍVEL -->
     <Button
         android:id="@+id/btnSair"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Sair" />
-</LinearLayout>
+        android:text="@string/sair_alun"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:background="@drawable/rounded_edittextyellow"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="20dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

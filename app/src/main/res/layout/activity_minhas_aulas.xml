@@ -1,34 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#6A1B9A"
     android:orientation="vertical"
+    android:gravity="center_horizontal"
     android:padding="16dp">
 
-    <TextView
-        android:id="@+id/tvAgendamentoTitulo"
+    <!-- Logo do Aluno -->
+    <ImageView
+        android:id="@+id/alunoLogo"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Meus agendamentos"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="12dp" />
+        android:layout_height="80dp"
+        android:layout_marginBottom="20dp"
+        android:contentDescription="@string/logo_aluno"
+        android:src="@drawable/student_logo" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvAgendamentos"
+    <!-- Card Container -->
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="554dp"
+        android:layout_height="0dp"
         android:layout_weight="1"
-        android:clipToPadding="false"
-        android:contentDescription="@string/app_name"
-        android:paddingBottom="8dp" />
+        android:background="@drawable/rounded_form"
+        android:orientation="vertical"
+        android:padding="24dp">
 
+        <!-- Título -->
+        <TextView
+            android:id="@+id/tvAgendamentoTitulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Horários Disponíveis"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="16dp" />
 
-    <Button
-        android:id="@+id/btnVoltarAluno"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Voltar"
-        android:layout_marginTop="8dp" />
+        <!-- RecyclerView -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvAgendamentos"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginBottom="16dp"
+            android:clipToPadding="false"
+            android:contentDescription="@string/app_name"
+            android:paddingBottom="8dp"
+            tools:ignore="NestedWeights" />
+
+        <!-- Botão Voltar -->
+        <Button
+            android:id="@+id/btnVoltarAluno"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="@drawable/rounded_edittextyellow"
+            android:elevation="2dp"
+            android:text="Voltar"
+            android:textColor="@color/black" />
+
+    </LinearLayout>
 
 </LinearLayout>

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
 import br.edu.fatecpg.app_gerenciamento_aulas.Login
 import br.edu.fatecpg.app_gerenciamento_aulas.MateriaisActivity
 import br.edu.fatecpg.app_gerenciamento_aulas.MinhasAulasActivity
@@ -16,9 +17,9 @@ import com.google.firebase.firestore.FirebaseFirestore
 
 class AlunoActivity : AppCompatActivity() {
 
-    private lateinit var btnVerHorarios: Button
-    private lateinit var btnMinhasAulas: Button
-    private lateinit var btnMateriais: Button
+    private lateinit var cardVerHorarios: CardView
+    private lateinit var cardMinhasAulas: CardView
+    private lateinit var cardMateriais: CardView
     private lateinit var btnSair: Button
     private lateinit var tvBoasVindas: TextView
 
@@ -27,18 +28,16 @@ class AlunoActivity : AppCompatActivity() {
         setContentView(R.layout.activity_aluno)
 
         tvBoasVindas = findViewById(R.id.tvBoasVindas)
-        btnVerHorarios = findViewById(R.id.btnVerAgendamentos)
-        btnMinhasAulas = findViewById(R.id.btnMinhasAulas)
-        btnMateriais = findViewById(R.id.btnMateriais)
+        cardVerHorarios = findViewById(R.id.btnVerAgendamentos)
+        cardMinhasAulas = findViewById(R.id.btnMinhasAulas)
+        cardMateriais = findViewById(R.id.btnMateriais)
         btnSair = findViewById(R.id.btnSair)
         var alunoId = ""
-
-
 
         val user = FirebaseAuth.getInstance().currentUser
         user?.let {
             val db = FirebaseFirestore.getInstance()
-            var alunoId = it.uid
+            alunoId = it.uid
 
             db.collection("usuarios").document(alunoId).get()
                 .addOnSuccessListener { document ->
@@ -53,25 +52,24 @@ class AlunoActivity : AppCompatActivity() {
                     tvBoasVindas.text = "Olá, Aluno!"
                 }
         }
-        btnVerHorarios.setOnClickListener{
+
+        cardVerHorarios.setOnClickListener{
             val intent = Intent(this, ListarAgendamentos::class.java)
             intent.putExtra("alunoId", alunoId)
             startActivity(intent)
-
         }
 
-        btnMinhasAulas.setOnClickListener {
+        cardMinhasAulas.setOnClickListener {
             val intent = Intent(this, MinhasAulasActivity::class.java)
             intent.putExtra("alunoId", alunoId)
             startActivity(intent)
         }
 
-        btnMateriais.setOnClickListener {
+        cardMateriais.setOnClickListener {
             val intent = Intent(this, MateriaisActivity::class.java)
             intent.putExtra("alunoId", alunoId)
             startActivity(intent)
         }
-
 
         btnSair.setOnClickListener {
             UserController.logout()
