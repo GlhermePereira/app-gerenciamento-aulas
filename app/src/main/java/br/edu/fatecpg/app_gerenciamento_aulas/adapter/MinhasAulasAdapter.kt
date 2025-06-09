@@ -46,8 +46,13 @@ class MinhasAulasAdapter(
                     HorarioDao.atualizarDisponibilidade(agendamento.horarioId, true) { atualizou ->
                         if (atualizou) {
                             Toast.makeText(holder.itemView.context, "Agendamento cancelado!", Toast.LENGTH_SHORT).show()
-                            agendamentos.removeAt(position)
-                            notifyItemRemoved(position)
+
+                            val pos = holder.adapterPosition
+                            if (pos != RecyclerView.NO_POSITION && pos < agendamentos.size) {
+                                agendamentos.removeAt(pos)
+                                notifyItemRemoved(pos)
+                            }
+
                         } else {
                             Toast.makeText(holder.itemView.context, "Erro ao atualizar horário", Toast.LENGTH_SHORT).show()
                         }
@@ -57,6 +62,7 @@ class MinhasAulasAdapter(
                 }
             }
         }
+
 
 
         holder.btnInfo.setOnClickListener {

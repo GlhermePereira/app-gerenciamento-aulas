@@ -12,6 +12,9 @@ import br.edu.fatecpg.app_gerenciamento_aulas.dao.AgendamentoDao
 import br.edu.fatecpg.app_gerenciamento_aulas.dao.HorarioDao
 import br.edu.fatecpg.app_gerenciamento_aulas.model.Agendamento
 import br.edu.fatecpg.app_gerenciamento_aulas.model.Horario
+import br.edu.fatecpg.app_gerenciamento_aulas.util.NotificacaoUtil
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 class ListarAgendamentos : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
@@ -46,17 +49,43 @@ class ListarAgendamentos : AppCompatActivity() {
                     // 2. Atualizar disponibilidade do horário
                     HorarioDao.atualizarDisponibilidade(horario.id, false) { atualizou ->
                         if (atualizou) {
-                            Toast.makeText(this, "Agendamento realizado com sucesso!", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(
+                                this,
+                                "Agendamento realizado com sucesso!",
+                                Toast.LENGTH_SHORT
+                            ).show()
                             carregarHorarios() // Atualiza lista
                         } else {
-                            Toast.makeText(this, "Erro ao atualizar horário", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this, "Erro ao atualizar horário", Toast.LENGTH_SHORT)
+                                .show()
                         }
                     }
                 } else {
                     Toast.makeText(this, "Erro ao agendar", Toast.LENGTH_SHORT).show()
                 }
+                UserController.getNomeUsuarioAtual { nomeAluno ->
+                    if (nomeAluno == null) return@getNomeUsuarioAtual
+
+                    UserController.getNomeUsuarioPorId(horario.professorId) { nomeProfessor ->
+                        if (nomeProfessor == null) return@getNomeUsuarioPorId
+
+                        val formato = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault())
+                        val dataHora = formato.parse("${agendamento.data} ${agendamento.hora}")
+                        val momentoNotificacaoAula =
+                            dataHora?.time?.minus(60 * 60 * 1000) ?: return@getNomeUsuarioPorId
+
+                        NotificacaoUtil.agendarNotificacao(
+                            context = this,
+                            disciplina = agendamento.disciplina,
+                            nomeAluno = nomeAluno,
+                            nomeProfessor = nomeProfessor,
+                            horarioNotificacaoAula = momentoNotificacaoAula
+                        )
+                    }
+                }
             }
-        }
+            }
+
 
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = adapter

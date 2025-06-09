@@ -26,4 +26,36 @@ object UserController {
         usuarioIdAtual = null
         tipoUsuarioAtual = null
     }
+
+    fun getNomeUsuarioAtual(callback: (String?) -> Unit) {
+        val uid = getUsuarioIdAtual() ?: return callback(null)
+
+        val firestore = com.google.firebase.firestore.FirebaseFirestore.getInstance()
+        firestore.collection("usuarios")
+            .document(uid)
+            .get()
+            .addOnSuccessListener { doc ->
+                val nome = doc.getString("nome")
+                callback(nome)
+            }
+            .addOnFailureListener {
+                callback(null)
+            }
+    }
+
+    fun getNomeUsuarioPorId(uid: String, callback: (String?) -> Unit) {
+        val firestore = com.google.firebase.firestore.FirebaseFirestore.getInstance()
+        firestore.collection("usuarios")
+            .document(uid)
+            .get()
+            .addOnSuccessListener { doc ->
+                val nome = doc.getString("nome")
+                callback(nome)
+            }
+            .addOnFailureListener {
+                callback(null)
+            }
+    }
+
+
 }
