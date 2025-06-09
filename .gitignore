@@ -13,3 +13,6 @@
 .externalNativeBuild
 .cxx
 local.properties
+# Firebase credentials
+limpar-usuarios-firebase/serviceAccountKey.json*
+
