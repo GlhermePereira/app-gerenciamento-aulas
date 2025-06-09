@@ -83,13 +83,21 @@ class MinhasAulasAdapter(
 
                     // Se houver materiais, adiciona botão para abrir todos
                     if (materiais.isNotEmpty()) {
-                        builder.setNeutralButton("Abrir Materiais") { _, _ ->
+                        builder.setNeutralButton("Ver Materiais") { _, _ ->
                             val context = holder.itemView.context
-                            materiais.forEach { link ->
-                                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(link))
-                                context.startActivity(intent)
-                            }
+                            val materiaisArray = materiais.toTypedArray()
+
+                            AlertDialog.Builder(context)
+                                .setTitle("Escolha um material para abrir")
+                                .setItems(materiaisArray) { _, which ->
+                                    val selectedLink = materiaisArray[which]
+                                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(selectedLink))
+                                    context.startActivity(intent)
+                                }
+                                .setNegativeButton("Cancelar", null)
+                                .show()
                         }
+
                     }
 
                     builder.show()

@@ -10,7 +10,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import br.edu.fatecpg.app_gerenciamento_aulas.Login
-import br.edu.fatecpg.app_gerenciamento_aulas.MateriaisActivity
 import br.edu.fatecpg.app_gerenciamento_aulas.MinhasAulasActivity
 import br.edu.fatecpg.app_gerenciamento_aulas.R
 import br.edu.fatecpg.app_gerenciamento_aulas.ListarAgendamentos
@@ -40,7 +39,6 @@ class AlunoActivity : AppCompatActivity() {
         tvBoasVindas = findViewById(R.id.tvBoasVindas)
         cardVerHorarios = findViewById(R.id.btnVerAgendamentos)
         cardMinhasAulas = findViewById(R.id.btnMinhasAulas)
-        cardMateriais = findViewById(R.id.btnMateriais)
         btnSair = findViewById(R.id.btnSair)
         var alunoId = ""
 
@@ -75,11 +73,8 @@ class AlunoActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        cardMateriais.setOnClickListener {
-            val intent = Intent(this, MateriaisActivity::class.java)
-            intent.putExtra("alunoId", alunoId)
-            startActivity(intent)
-        }
+
+
 
         btnSair.setOnClickListener {
             UserController.logout()
